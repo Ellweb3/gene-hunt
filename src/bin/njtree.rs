@@ -1,9 +1,9 @@
-//! Дерево присоединения соседей (NJ) по попарным выравниваниям + бутстреп.
+//! Neighbor-joining (NJ) tree from pairwise alignments with bootstrap support.
 //! njtree <seqs.fa> <out_prefix> [reps]
-//! Расстояние: доля несовпадений в выровненных колонках SW, поправка Кимуры для белков
-//! d = −ln(1 − p − 0.2p²). Бутстреп: в каждой паре колонки выравнивания пересэмплируются
-//! с возвращением, NJ строится заново, считается поддержка расщеплений (bipartitions).
-//! Метки последовательностей начинаются с тега группы: TAG|acc|name.
+//! Distance: fraction of mismatches in aligned SW columns, Kimura correction for proteins:
+//! d = −ln(1 − p − 0.2p²). Bootstrap: for each pair the alignment columns are resampled
+//! with replacement, NJ is rebuilt, and bipartition support is counted.
+//! Sequence labels must start with a group tag: TAG|acc|name.
 use gene_hunt::align::{encode, sw_align};
 use rayon::prelude::*;
 use std::collections::HashMap;
@@ -21,7 +21,7 @@ struct Node {
     ch: Vec<(usize, f64)>,
 }
 
-/// NJ; возвращает узлы (листья 0..n) и индекс корня (последнее слияние трёх узлов)
+/// NJ; returns nodes (leaves 0..n) and the root index (last three-way join).
 fn nj(d0: &[Vec<f64>]) -> (Vec<Node>, usize) {
     let n = d0.len();
     let mut nodes: Vec<Node> = (0..n).map(|_| Node { ch: vec![] }).collect();
@@ -79,7 +79,7 @@ fn leaves(nodes: &[Node], u: usize, n: usize, out: &mut Split) {
     }
 }
 
-/// каноническая запись расщепления: сторона без листа 0
+/// Canonical bipartition representation: the side that does not contain leaf 0.
 fn canon(s: &Split, n: usize) -> Split {
     if s[0] & 1 == 0 {
         return s.clone();
@@ -137,7 +137,7 @@ fn main() {
         seqs.push(encode(l.collect::<String>().as_bytes()));
     }
     let n = names.len();
-    // попарные векторы совпадений
+    // pairwise match vectors
     let pairs: Vec<(usize, usize)> = (0..n).flat_map(|i| ((i + 1)..n).map(move |j| (i, j))).collect();
     let matches: Vec<Vec<bool>> = pairs.par_iter().map(|&(i, j)| {
         let al = sw_align(&seqs[i], &seqs[j]);
@@ -152,7 +152,7 @@ fn main() {
     }
     let (tree, root) = nj(&d);
     let ref_splits = splits(&tree, root, n);
-    // бутстреп
+    // bootstrap
     let boots: Vec<Vec<Split>> = (0..reps).into_par_iter().map(|r| {
         let mut rng = Rng(0x9E3779B97F4A7C15 ^ (r as u64 + 1).wrapping_mul(0xBF58476D1CE4E5B9));
         let mut db = vec![vec![0.0; n]; n];
@@ -175,7 +175,7 @@ fn main() {
     let sup: HashMap<usize, f64> = ref_splits.iter().map(|(&u, s)| (u, 100.0 * *count.get(s).unwrap_or(&0) as f64 / reps as f64)).collect();
     fs::write(format!("{}.nwk", a[2]), newick(&tree, root, n, &names, &sup) + ";\n").unwrap();
 
-    // проверки гипотез: точные расщепления по тегам
+    // hypothesis tests: exact bipartitions by tag
     let tag = |i: usize| names[i].split('|').next().unwrap().to_string();
     let w = n.div_ceil(64);
     let set_of = |pred: &dyn Fn(usize) -> bool| {
@@ -187,16 +187,16 @@ fn main() {
     };
     let mut f = fs::File::create(format!("{}_tests.txt", a[2])).unwrap();
     let tests: Vec<(&str, Split)> = vec![
-        ("TMCO6 позвоночных монофилетичны", set_of(&|i| tag(i) == "TMCO6v")),
-        ("PF30746 вне позвоночных монофилетичны", set_of(&|i| tag(i) == "PF30746")),
-        ("TMCO6v + PF30746 — одна группа против всех KPNA", set_of(&|i| tag(i) != "KPNA")),
+        ("vertebrate TMCO6 are monophyletic", set_of(&|i| tag(i) == "TMCO6v")),
+        ("non-vertebrate PF30746 are monophyletic", set_of(&|i| tag(i) == "PF30746")),
+        ("TMCO6v + PF30746 — single clade vs. all KPNA", set_of(&|i| tag(i) != "KPNA")),
     ];
     for (name, s) in &tests {
         let in_tree = ref_splits.values().any(|x| x == s);
         let b = 100.0 * *count.get(s).unwrap_or(&0) as f64 / reps as f64;
-        writeln!(f, "{name}: в NJ-дереве {}; бутстреп {b:.0}%", if in_tree { "ДА" } else { "нет" }).unwrap();
+        writeln!(f, "{name}: in NJ tree {}; bootstrap {b:.0}%", if in_tree { "YES" } else { "no" }).unwrap();
     }
-    // наименьшая группа (сторона расщепления), содержащая все TMCO6v: её состав и поддержка
+    // smallest clade (bipartition side) containing all TMCO6v: its composition and support
     let tm: Vec<usize> = (0..n).filter(|&i| tag(i) == "TMCO6v").collect();
     let contains_all = |s: &Split, inv: bool| tm.iter().all(|&i| ((s[i / 64] >> (i % 64)) & 1 == 1) != inv);
     let mut best: Option<(usize, Split, bool, usize)> = None;
@@ -216,40 +216,40 @@ fn main() {
         for m in &mem {
             *by.entry(m.split('|').next().unwrap().to_string()).or_default() += 1;
         }
-        writeln!(f, "наименьшая группа с TMCO6 позвоночных: {size} листьев, поддержка {:.0}%, кроме TMCO6v: {by:?}", sup.get(&u).unwrap_or(&0.0)).unwrap();
+        writeln!(f, "smallest clade with vertebrate TMCO6: {size} leaves, support {:.0}%, excluding TMCO6v: {by:?}", sup.get(&u).unwrap_or(&0.0)).unwrap();
         for m in mem.iter().take(40) {
             writeln!(f, "   {m}").unwrap();
         }
     }
-    // ближайшие соседи по расстоянию для каждой группы
+    // nearest neighbors by distance for each group
     for t in ["PF30746", "TMCO6v"] {
         let mut near: HashMap<String, usize> = HashMap::new();
         for i in (0..n).filter(|&i| tag(i) == t) {
             let j = (0..n).filter(|&j| tag(j) != t).min_by(|&x, &y| d[i][x].partial_cmp(&d[i][y]).unwrap()).unwrap();
             *near.entry(tag(j)).or_default() += 1;
         }
-        writeln!(f, "ближайший член другой группы для {t}: {near:?}").unwrap();
+        writeln!(f, "nearest out-group neighbor for {t}: {near:?}").unwrap();
     }
-    // ближайший сосед вообще (другой вид): та же группа или импортин?
+    // nearest neighbor overall (another species): same group or importin?
     for t in ["PF30746", "TMCO6v"] {
         let mut near: HashMap<String, usize> = HashMap::new();
         for i in (0..n).filter(|&i| tag(i) == t) {
             let j = (0..n).filter(|&j| j != i).min_by(|&x, &y| d[i][x].partial_cmp(&d[i][y]).unwrap()).unwrap();
             *near.entry(tag(j)).or_default() += 1;
         }
-        writeln!(f, "ближайший сосед вообще для {t}: {near:?}").unwrap();
+        writeln!(f, "nearest overall neighbor for {t}: {near:?}").unwrap();
     }
-    // средние расстояния между группами
+    // mean distances between groups
     let plant = ["Arabidopsis", "Oryza", "Solanum", "Viridiplantae"];
     let fungi = ["Saccharomyces", "Schizosaccharomyces", "Penicillium", "Aspergillus", "Fungi"];
     let grp = |i: usize| {
         let nm = &names[i];
         let t = tag(i);
-        let k = if plant.iter().any(|p| nm.contains(p)) { "растения" } else if fungi.iter().any(|p| nm.contains(p)) { "грибы" } else if nm.contains("Dictyostelium") { "амёбы" } else { "животные" };
-        if t == "TMCO6v" { "TMCO6 позвоночных".to_string() } else { format!("{t} {k}") }
+        let k = if plant.iter().any(|p| nm.contains(p)) { "plants" } else if fungi.iter().any(|p| nm.contains(p)) { "fungi" } else if nm.contains("Dictyostelium") { "amoebae" } else { "animals" };
+        if t == "TMCO6v" { "vertebrate TMCO6".to_string() } else { format!("{t} {k}") }
     };
     let gs: Vec<String> = { let mut v: Vec<String> = (0..n).map(grp).collect(); v.sort(); v.dedup(); v };
-    write!(f, "\nсредняя дистанция Кимуры\t").unwrap();
+    write!(f, "\nmean Kimura distance\t").unwrap();
     for g in &gs { write!(f, "{g}\t").unwrap(); }
     writeln!(f).unwrap();
     for g1 in &gs {

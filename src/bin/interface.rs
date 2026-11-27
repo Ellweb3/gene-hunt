@@ -1,6 +1,6 @@
-//! Интерфейс двух цепей модели: остатки с тяжёлыми атомами ближе 4.5 Å к другой цепи.
-//! interface <complex.pdb> [posA ...]  — дополнительно печатает, где лежат заданные остатки цепи A
-//! (минимальное расстояние до цепи B).
+//! Interface between two model chains: residues with heavy atoms closer than 4.5 Å to the other chain.
+//! interface <complex.pdb> [posA ...]  — additionally prints the position of specified chain A residues
+//! (minimum distance to chain B).
 use std::collections::{BTreeMap, BTreeSet};
 use std::fs;
 
@@ -30,7 +30,7 @@ fn main() {
     let ch: Vec<char> = chains.into_iter().collect();
     let d2 = |x: &Atom, y: &Atom| (0..3).map(|k| (x.xyz[k] - y.xyz[k]).powi(2)).sum::<f64>();
     let ca = |c: char| atoms.iter().filter(move |x| x.chain == c && x.name == "CA");
-    // минимальное расстояние от каждого остатка до другой цепи
+    // minimum distance from each residue to the other chain
     let mut mind: BTreeMap<(char, usize), (f64, String, f64)> = BTreeMap::new();
     for x in &atoms {
         let other = if x.chain == ch[0] { ch[1] } else { ch[0] };

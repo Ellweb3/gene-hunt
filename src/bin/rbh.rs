@@ -1,7 +1,7 @@
-//! Лучшее попадание в панели эталонов (например, все импортины-α человека + TMCO6).
+//! Best hit against a reference panel (e.g., all human importins-α + TMCO6).
 //! rbh <seqs.fa> <refs.fa> <acc_list.txt>
-//! Печатает для каждой последовательности лучший эталон, отрыв от второго (в битах) и
-//! сводку по группам из *.species (если передан 4-й аргумент).
+//! Prints for each sequence the best reference hit, the gap to the second hit (in bits), and
+//! a per-group summary from *.species (if a 4th argument is supplied).
 use gene_hunt::align::{bits, encode, sw_best};
 use rayon::prelude::*;
 use std::collections::{BTreeMap, HashMap, HashSet};

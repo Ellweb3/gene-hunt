@@ -1,4 +1,4 @@
-//! Филогенетическое совместное присутствие двух семейств в референсных протеомах.
+//! Phylogenetic co-occurrence of two protein families across reference proteomes.
 //! cooccur <refprot.tsv> <famA.tsv> <famB.tsv> <min_busco_C>
 //! refprot: upid, taxid, lineage, protein_count, BUSCO; fam: accession, taxid, …
 use std::collections::{BTreeMap, HashSet};
@@ -26,7 +26,7 @@ fn main() {
     let min_c: f64 = a[4].parse().unwrap();
     let ta = taxa(&a[2]);
     let tb = taxa(&a[3]);
-    // группа → [neither, A only, B only, both]
+    // taxon group → [neither, A only, B only, both]
     let mut g: BTreeMap<usize, [usize; 4]> = BTreeMap::new();
     let mut tot = [0usize; 4];
     let mut seen = HashSet::new();
@@ -56,7 +56,7 @@ fn main() {
     let (n00, n10, n01, n11) = (tot[0] as f64, tot[1] as f64, tot[2] as f64, tot[3] as f64);
     let phi = (n11 * n00 - n10 * n01) / ((n11 + n10) * (n01 + n00) * (n11 + n01) * (n10 + n00)).sqrt();
     println!("TOTAL n={n} neither={n00} A_only={n10} B_only={n01} both={n11} phi={phi:.3}");
-    // где наборы расходятся — с названием вида
+    // where the two sets differ — with species name
     for (gi, v) in &only {
         if v.len() <= 12 {
             println!("discordant {}: {}", GROUPS[*gi], v.join("; "));

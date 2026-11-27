@@ -1,5 +1,5 @@
-//! Идентичность последовательностей к двум эталонам (SW, доля совпадений в выровненных колонках
-//! и покрытие эталона). ident <seqs.fa> <refA.fa> <refB.fa> <acc_list.txt>
+//! Sequence identity to two reference sequences (SW, fraction of matching aligned columns,
+//! and reference coverage). ident <seqs.fa> <refA.fa> <refB.fa> <acc_list.txt>
 use gene_hunt::align::{encode, sw_align};
 use std::collections::HashSet;
 use std::fs;

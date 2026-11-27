@@ -1,4 +1,4 @@
-//! Поиск белка в ДНК: трансляция в 6 рамках + Смит–Уотерман (BLOSUM62, аффинные штрафы 11/1).
+//! Protein-in-DNA search: translation in 6 reading frames + Smith–Waterman (BLOSUM62, affine gap penalties 11/1).
 
 const AA: &[u8] = b"ARNDCQEGHILKMFPSTWYVBZX*";
 #[rustfmt::skip]
@@ -30,7 +30,7 @@ const BLOSUM62: [[i8; 24]; 24] = [
 ];
 const GAP_OPEN: i32 = 11;
 const GAP_EXT: i32 = 1;
-/// Параметры Карлина–Альтшуля для BLOSUM62 11/1 (как в BLAST).
+/// Karlin–Altschul parameters for BLOSUM62 11/1 (as used in BLAST).
 pub const LAMBDA: f64 = 0.267;
 pub const K: f64 = 0.041;
 
@@ -52,7 +52,7 @@ pub fn revcomp(s: &[u8]) -> Vec<u8> {
     s.iter().rev().map(|c| match c.to_ascii_uppercase() { b'A' => b'T', b'T' => b'A', b'C' => b'G', b'G' => b'C', _ => b'N' }).collect()
 }
 
-/// Шесть рамок: (смещение, прямая цепь?, белок).
+/// Six reading frames: (offset, forward strand?, protein).
 pub fn six_frames(dna: &[u8]) -> Vec<(usize, bool, Vec<u8>)> {
     let rc = revcomp(dna);
     let mut out = vec![];
@@ -64,7 +64,7 @@ pub fn six_frames(dna: &[u8]) -> Vec<(usize, bool, Vec<u8>)> {
     out
 }
 
-/// Лучший локальный счёт Смита–Уотермана (Готох) и позиция конца в субъекте.
+/// Best local Smith–Waterman score (Gotoh) and the end position in the subject.
 pub fn sw_best(q: &[u8], s: &[u8]) -> (i32, usize) {
     let n = s.len();
     let (mut h, mut e) = (vec![0i32; n + 1], vec![i32::MIN / 2; n + 1]);
@@ -88,7 +88,7 @@ pub fn sw_best(q: &[u8], s: &[u8]) -> (i32, usize) {
 pub fn bits(score: i32) -> f64 { (LAMBDA * score as f64 - K.ln()) / std::f64::consts::LN_2 }
 pub fn evalue(score: i32, m: usize, n: usize) -> f64 { K * m as f64 * n as f64 * (-LAMBDA * score as f64).exp() }
 
-/// Выравнивание с обратным проходом: (счёт, q_start, q_end, s_start, s_end, строки q/s).
+/// Alignment with traceback: (score, q_start, q_end, s_start, s_end, aligned q/s strings).
 pub struct Aln { pub score: i32, pub q: (usize, usize), pub s: (usize, usize), pub qa: Vec<u8>, pub sa: Vec<u8> }
 
 pub fn sw_align(q: &[u8], s: &[u8]) -> Aln {
@@ -109,7 +109,7 @@ pub fn sw_align(q: &[u8], s: &[u8]) -> Aln {
             if h[k] > best { best = h[k]; bi = i; bj = j; }
         }
     }
-    let (mut i, mut j, mut state) = (bi, bj, 0u8); // 0 = H, 1 = E (пропуск в s), 2 = F (пропуск в q)
+    let (mut i, mut j, mut state) = (bi, bj, 0u8); // 0 = H, 1 = E (gap in s), 2 = F (gap in q)
     let (mut qa, mut sa) = (vec![], vec![]);
     while i > 0 && j > 0 {
         let k = i * w + j;
@@ -128,10 +128,10 @@ pub fn sw_align(q: &[u8], s: &[u8]) -> Aln {
     Aln { score: best, q: (i, bi), s: (j, bj), qa, sa }
 }
 
-/// Штраф за стоп-кодон в субъекте: выравнивание не должно проходить сквозь стоп (интрон/псевдоген).
+/// Penalty for a stop codon in the subject: alignments must not pass through a stop (intron/pseudogene).
 pub const STOP_PENALTY: i32 = -25;
 #[inline]
 fn sc(row: &[i8; 24], s: u8) -> i32 { if s == 23 { STOP_PENALTY } else { row[s as usize] as i32 } }
 
-/// Балл BLOSUM62 для двух закодированных аминокислот.
+/// BLOSUM62 score for two encoded amino acids.
 pub fn blosum(a: u8, b: u8) -> i32 { BLOSUM62[a as usize][b as usize] as i32 }

@@ -1,5 +1,5 @@
-//! Профиль данных для малоизученных (Tdark) белков: публикации (NCBI gene2pubmed), DepMap (Chronos),
-//! BioPlex 3.0 (293T + HCT116), локализация HPA. Пишет TSV и печатает лучших кандидатов.
+//! Data profile for understudied (Tdark) proteins: publications (NCBI gene2pubmed), DepMap (Chronos),
+//! BioPlex 3.0 (293T + HCT116), HPA subcellular localization. Writes a TSV and prints the top candidates.
 use flate2::read::GzDecoder;
 use std::collections::{HashMap, HashSet};
 use std::io::{BufRead, BufReader};
@@ -11,7 +11,7 @@ fn main() {
     let tdark: Vec<serde_json::Value> = serde_json::from_str(&std::fs::read_to_string("data/pharos_tdark.json").unwrap()).unwrap();
     let tsyms: HashSet<String> = tdark.iter().map(|t| t["sym"].as_str().unwrap_or("").to_string()).collect();
     let tname: HashMap<String, String> = tdark.iter().map(|t| (t["sym"].as_str().unwrap_or("").to_string(), t["name"].as_str().unwrap_or("").to_string())).collect();
-    // 2. символ -> GeneID
+    // 2. symbol -> GeneID
     let mut sym2id: HashMap<String, String> = HashMap::new();
     let mut band: HashMap<String, String> = HashMap::new();
     for l in BufReader::new(GzDecoder::new(std::fs::File::open("data/Homo_sapiens.gene_info.gz").unwrap())).lines().skip(1) {
@@ -20,7 +20,7 @@ fn main() {
         if tsyms.contains(f[2]) { sym2id.insert(f[2].to_string(), f[1].to_string()); }
     }
     let ids: HashSet<String> = sym2id.values().cloned().collect();
-    // 3. публикации
+    // 3. publications
     let mut pubs: HashMap<String, u32> = HashMap::new();
     for l in BufReader::new(GzDecoder::new(std::fs::File::open(g2p).unwrap())).lines().skip(1) {
         let l = l.unwrap(); let mut f = l.split('\t');
@@ -28,18 +28,18 @@ fn main() {
         let g = f.next().unwrap();
         if ids.contains(g) { *pubs.entry(g.to_string()).or_default() += 1; }
     }
-    // 4. DepMap: колонки «SYM (GeneID)»
+    // 4. DepMap: columns "SYM (GeneID)"
     let mut lines = BufReader::new(std::fs::File::open(depmap).unwrap()).lines();
     let header: Vec<String> = lines.next().unwrap().unwrap().split(',').map(String::from).collect();
     let all_syms: Vec<String> = header.iter().skip(1).map(|h| h.split(' ').next().unwrap().to_string()).collect();
-    let mut mat: Vec<Vec<f64>> = vec![vec![]; all_syms.len()]; // ген -> значения по линиям (NaN сохраняем)
+    let mut mat: Vec<Vec<f64>> = vec![vec![]; all_syms.len()]; // gene -> values per cell line (NaN preserved)
     for l in lines {
         let l = l.unwrap(); let f: Vec<&str> = l.split(',').collect();
         for j in 0..all_syms.len() { mat[j].push(f[j + 1].parse::<f64>().unwrap_or(f64::NAN)); }
     }
     let want: Vec<(usize, String)> = all_syms.iter().enumerate().filter(|(_, s)| tsyms.contains(*s)).map(|(i, s)| (i, s.clone())).collect();
     let vals: Vec<Vec<f64>> = want.iter().map(|(i, _)| mat[*i].iter().cloned().filter(|x| !x.is_nan()).collect()).collect();
-    // Стандартизованная матрица для ко-зависимости (NaN -> 0 после центрирования), только гены с ≥ 500 линиями
+    // Standardized matrix for co-dependency (NaN -> 0 after centering), only genes with ≥ 500 cell lines
     let nl = mat[0].len();
     let z: Vec<Option<Vec<f32>>> = mat.iter().map(|v| {
         let ok: Vec<f64> = v.iter().cloned().filter(|x| !x.is_nan()).collect();
@@ -62,7 +62,7 @@ fn main() {
         best.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap());
         Some((s.clone(), best.iter().take(5).map(|(r, j)| (all_syms[*j].clone(), *r)).collect()))
     }).collect();
-    let mut dm: HashMap<String, (usize, f64, f64, f64)> = HashMap::new(); // n, среднее, доля < -0.5, минимум
+    let mut dm: HashMap<String, (usize, f64, f64, f64)> = HashMap::new(); // n, mean, fraction < -0.5, minimum
     for (k, (_, s)) in want.iter().enumerate() {
         let v = &vals[k]; if v.is_empty() { continue; }
         let n = v.len();
@@ -84,7 +84,7 @@ fn main() {
         let c: Vec<&str> = l.split('\t').collect();
         hpa.insert(c[1].to_string(), (c[2].to_string(), c[3].to_string()));
     }
-    // Сводка
+    // Summary
     let mut out = String::from("sym\tname\tpubs\tdepmap_n\tdepmap_mean\tdepmap_frac_lt_-0.5\tdepmap_min\tbioplex_partners\thpa_reliability\thpa_location\tcoessential_top5\tscore\n");
     let mut rows = vec![];
     for s in &tsyms {
@@ -92,7 +92,7 @@ fn main() {
         let d = dm.get(s).cloned();
         let bp = partners.get(s).map(|x| x.len()).unwrap_or(0);
         let (rel, loc) = hpa.get(s).cloned().unwrap_or_default();
-        // Очки «насыщенности данными»
+        // "Data richness" score
         let mut score = 0.0;
         if let Some((n, mean, frac, _)) = d { if n >= 500 { if frac >= 0.05 { score += 2.0; } if mean < -0.3 { score += 1.0; } } }
         if bp >= 3 { score += 1.0; } if bp >= 8 { score += 1.0; }
@@ -108,9 +108,9 @@ fn main() {
     }
     std::fs::write("data/tdark_profile.tsv", out).unwrap();
     rows.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap().then(a.1.cmp(&b.1)));
-    println!("Tdark: {}, с GeneID: {}, в DepMap: {}, в BioPlex: {}, в HPA: {}", tsyms.len(), sym2id.len(), dm.len(),
+    println!("Tdark: {}, with GeneID: {}, in DepMap: {}, in BioPlex: {}, in HPA: {}", tsyms.len(), sym2id.len(), dm.len(),
         tsyms.iter().filter(|s| partners.contains_key(*s)).count(), tsyms.iter().filter(|s| hpa.contains_key(*s)).count());
-    println!("{:<11} {:>4} {:>4} {:>6} {:>5} {:>3} {:<9} {}", "ген", "очки", "стат", "DM ср.", "<-.5", "BP", "HPA", "ко-зависимость (топ-3)");
+    println!("{:<11} {:>4} {:>4} {:>6} {:>5} {:>3} {:<9} {}", "gene", "score", "pubs", "DM mean", "<-.5", "BP", "HPA", "co-essentiality (top-3)");
     for (sc, p, s, _, mean, frac, bp, rel, ce) in rows.iter().filter(|r| r.1 <= 15).take(40) {
         let ce3 = ce.split(',').take(3).collect::<Vec<_>>().join(" ");
         println!("{s:<11} {sc:>4} {p:>4} {mean:>6.2} {:>4.0}% {bp:>3} {rel:<9} {ce3}", frac * 100.0);

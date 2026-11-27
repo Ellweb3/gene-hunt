@@ -1,8 +1,8 @@
-//! Консервация остатков белка человека по ортологам (одна последовательность на вид).
-//! conserve <orth.fa> <fam.tsv с lineage> <human_acc> <model.pdb> <out.tsv> [pos ...]
-//! Для каждого вида берётся лучшая по SW-счёту последовательность (защита от паралогов),
-//! выравнивания с покрытием < 60% длины человеческого белка отбрасываются.
-//! Отдельно считается «далёкий» набор — не позвоночные.
+//! Residue conservation of a human protein against orthologs (one sequence per species).
+//! conserve <orth.fa> <fam.tsv with lineage> <human_acc> <model.pdb> <out.tsv> [pos ...]
+//! For each species the best SW-score sequence is taken (protection against paralogs),
+//! alignments with coverage < 60% of the human protein length are discarded.
+//! A separate "distant" set is computed — non-vertebrate species only.
 use gene_hunt::align::{encode, sw_align};
 use rayon::prelude::*;
 use std::collections::HashMap;
@@ -29,12 +29,12 @@ fn main() {
         (v.len() > 2).then(|| (v[0].to_string(), v[2].to_string()))
     }).collect();
     let vert: HashMap<String, bool> = lineage.iter().map(|(k, v)| (k.clone(), v.contains("Vertebrata"))).collect();
-    // контрольная последовательность (паралог, например импортин-α) для проверки ортологии
+    // control sequence (a paralog, e.g. importin-α) for orthology verification
     let control: Option<Vec<u8>> = std::env::var("CONTROL").ok().map(|p| encode(&read_fasta(&p)[0].2));
     let human = seqs.iter().find(|s| s.0 == a[3]).expect("human").2.clone();
     let hq = encode(&human);
     let n = human.len();
-    // соседи Cα (экспонированность) из модели
+    // Cα neighbors (solvent exposure) from the model
     let pdb = fs::read_to_string(&a[4]).unwrap();
     let ca: Vec<[f64; 3]> = pdb.lines().filter(|l| l.starts_with("ATOM") && &l[12..16] == " CA ").map(|l| {
         let p = |i: usize| l[i..i + 8].trim().parse::<f64>().unwrap();
@@ -43,7 +43,7 @@ fn main() {
     let plddt: Vec<f64> = pdb.lines().filter(|l| l.starts_with("ATOM") && &l[12..16] == " CA ").map(|l| l[60..66].trim().parse().unwrap()).collect();
     let nb: Vec<usize> = (0..n).map(|i| (0..n).filter(|&j| j != i && (0..3).map(|k| (ca[i][k] - ca[j][k]).powi(2)).sum::<f64>() < 100.0).count()).collect();
 
-    // выравнивания
+    // alignments
     let alns: Vec<(String, String, i32, Vec<Option<u8>>)> = seqs.par_iter().filter(|s| s.0 != a[3]).map(|(acc, ox, s)| {
         let al = sw_align(&hq, &encode(s));
         let mut col: Vec<Option<u8>> = vec![None; n];
@@ -78,7 +78,7 @@ fn main() {
         let id = present.iter().filter(|&&c| c == human[p]).count() as f64 / present.len().max(1) as f64;
         (id, present.len() as f64 / set.len().max(1) as f64)
     };
-    // по видам: группа, остатки в запрошенных позициях, счёт против человека и против контроля
+    // per species: taxon group, residues at requested positions, score vs. human and vs. control
     let groups = ["Mammalia", "Aves", "Testudines", "Crocodylia", "Lepidosauria", "Amphibia", "Coelacanthiformes", "Dipnomorpha", "Actinopterygii", "Chondrichthyes", "Cyclostomata", "Tunicata", "Cephalochordata", "Echinodermata", "Hemichordata", "Mollusca", "Annelida", "Brachiopoda", "Cnidaria", "Filasterea", "Fungi", "Viridiplantae"];
     let pos: Vec<usize> = a[6..].iter().map(|s| s.parse::<usize>().unwrap() - 1).collect();
     let mut fs_ = fs::File::create(format!("{}.species", a[5])).unwrap();
@@ -105,7 +105,7 @@ fn main() {
     for s in &a[6..] {
         let p: usize = s.parse::<usize>().unwrap() - 1;
         let r = rows[p];
-        // распределение остатков в далёком наборе
+        // residue distribution in the distant set
         let mut cnt: HashMap<u8, usize> = HashMap::new();
         for &i in &far {
             if let Some(c) = alns[i].3[p] {
@@ -117,7 +117,7 @@ fn main() {
         let top: Vec<String> = c.iter().take(4).map(|(k, v)| format!("{}:{v}", *k as char)).collect();
         println!("{}{}\tall {:.2}\tnonvert {:.2} (cov {:.2})\tnb {}\t{}", human[p] as char, p + 1, r.1, r.2, r.3, nb[p], top.join(" "));
     }
-    // самые консервативные экспонированные остатки (кандидаты интерфейса)
+    // most conserved exposed residues (interface candidates)
     let mut exp: Vec<_> = rows.iter().filter(|r| nb[r.0] <= 14 && r.3 >= 0.7 && plddt[r.0] >= 70.0).collect();
     exp.sort_by(|x, y| y.2.partial_cmp(&x.2).unwrap());
     println!("most conserved exposed residues (non-vertebrate identity):");

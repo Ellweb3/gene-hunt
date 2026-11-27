@@ -1,121 +1,126 @@
 # gene-hunt
 
-**Поиск малоизученных человеческих белков, по которым уже накоплено достаточно открытых
-данных, чтобы сделать содержательный вывод без собственной лаборатории.**
+**Finding under-studied human proteins for which enough open data already exists to reach a
+substantive conclusion without a lab of one's own.**
 
-Из 5501 белка класса Tdark (почти без публикаций и без известной функции) отобрана пара
-**TMCO6 — ZNF511** и разобрана подробно. Весь счёт — на Rust, данные — из открытых баз.
+Starting from the 5501 proteins in the Tdark class (next to no publications, no known
+function), one pair — **TMCO6 and ZNF511** — was selected and analysed in depth. All
+computation is in Rust; all data comes from public databases.
 
-> ⚠️ Всё здесь получено вычислениями. Это гипотезы, пригодные для проверки в лаборатории,
-> а не установленные факты. Места, где предсказание не подтвердилось, отмечены прямо —
-> см. разделы 4, 7 и 9.3 основного разбора.
+> ⚠️ Everything here is computational. These are hypotheses worth testing at the bench, not
+> established facts. Where a prediction failed, it is marked as such — see sections 4, 7
+> and 9.3 of the main analysis.
 
 ---
 
-## Главное
+## The finding
 
-**TMCO6 — не мембранный белок, а родственник импортина-α.** Название гена
-(«transmembrane and coiled-coil domains 6») и аннотация UniProt «multi-pass membrane»
-не соответствуют структуре: Foldseek находит импортины-α по всей длине белка
-(E ≈ 1e-12), а обе «трансмембранные» спирали спрятаны в гидрофобном ядре соленоида
-(pLDDT 94–97, 0–1 заряженный остаток, ~19 соседей Cα в радиусе 10 Å).
+**TMCO6 is not a membrane protein. It is a relative of importin-alpha.** The gene name
+("transmembrane and coiled-coil domains 6") and the UniProt annotation "multi-pass membrane"
+do not match the structure: Foldseek retrieves importins-alpha over the full length of the
+protein (E ~1e-12), and both annotated "transmembrane" helices are buried in the hydrophobic
+core of the solenoid (pLDDT 94-97, 0-1 charged residues, ~19 Calpha neighbours within 10 A).
+The similarity is invisible at the sequence level, at only ~19% identity.
 
-**TMCO6 и ZNF511 образуют устойчивую пару.** Три независимых линии данных:
+**TMCO6 and ZNF511 form a stable pair.** Three independent lines of evidence:
 
-| источник | что показывает |
+| source | what it shows |
 |---|---|
-| DepMap, 1208 клеточных линий | взаимно лучшие партнёры, r = 0.60; у каждого следующий партнёр лишь 0.24 |
-| BioPlex 3.0, две линии | осаждаются вместе, и оба — с кольцом LSm |
-| AlphaFold (2 независимые модели) | ipTM 0.79 и 0.84, интерфейс 133 / 90 остатков |
+| DepMap, 1208 cell lines | reciprocal best partners, r = 0.60; the next-best partner of each is only 0.24 |
+| BioPlex 3.0, two cell lines | they co-precipitate with each other, and both with an LSm ring |
+| AlphaFold, two independent models | ipTM 0.79 and 0.84, interface of 133 / 90 residues |
 
-**Пара, судя по всему, связана с ядерным кольцом LSm2–8 — основой частицы U6 snRNP.**
-Ключевой независимый довод — чужие опубликованные данные: в очистке AtLSM8 у *Arabidopsis*
-(Golisz et al. 2013, PMID 23620288) нашёлся гомолог ZNF511, рядом с SART3/Prp24 и Brr2,
-и его не было в очистках AtLSM1a.
+**The pair appears to be associated with the nuclear LSm2-8 ring, the core of the U6 snRNP.**
+The key independent evidence is published experimental data from another kingdom: in an
+AtLSM8 purification from *Arabidopsis* (Golisz et al. 2013, PMID 23620288) the ZNF511
+homolog was recovered alongside SART3/Prp24 and Brr2, and was absent from the AtLSM1a
+purifications.
 
-**Возможная значимость.** У овец породы North Country Cheviot мутация, выключающая TMCO6,
-вызывает наследственную болезнь мотонейронов (PMID 37488055). Если модуль действительно
-обслуживает U6, это встаёт в ряд с болезнями сборки snRNP. Это наше предположение, а не
-вывод той статьи.
+**Possible significance.** In North Country Cheviot sheep, a loss-of-function variant in
+TMCO6 causes inherited motor neuron disease (PMID 37488055). If this module does serve U6,
+that phenotype would sit alongside the other snRNP-assembly disorders. That comparison is
+ours, not a conclusion of the paper.
 
-📄 **[Полный разбор: TMCO6_ZNF511.md](TMCO6_ZNF511.md)** — 9 разделов, включая опровергнутые
-гипотезы.
-✉️ **[Черновик письма в лабораторию](letter_draft.md)** — кому и что предложить проверить.
+📄 **[Full analysis: TMCO6_ZNF511.md](TMCO6_ZNF511.md)** — nine sections, including the
+hypotheses that were refuted.
+✉️ **[Draft letter to a lab](letter_draft.md)** — who to contact and what to propose testing.
 
 ---
 
-## Как искали кандидатов
+## How the candidates were found
 
-1. **Отправная точка** — 5501 белок класса Tdark из Pharos (консорциум IDG).
-2. **Слои данных** — число публикаций (NCBI gene2pubmed), зависимость клеточных линий
-   (DepMap Chronos 26Q1), физические взаимодействия (BioPlex 3.0), локализация в клетке (HPA).
-3. **Ко-зависимость** — корреляция Пирсона профилей по ~1100 линиям. Гены с ≥500 линиями.
-4. **Отсев артефактов** — это оказалось главной работой:
-   - исключены соседи по цитобэнду (артефакт числа копий);
-   - исключены многокопийные семейства (OR, KRTAP, GOLGA6/8, AGAP, POTE, SPDYE…):
-     направляющая режет много мест сразу, и ген ложно выглядит необходимым;
-   - отброшены гены, измеренные в малом числе линий: они дают ложные корреляции;
-   - вручную отсеяны субъединицы известных комплексов, которые формально числятся
-     неизученными (митохондриальная рибосома, SAGA, минорная сплайсосома), и гены со
-     свежими функциональными статьями (TTC27, GPATCH1/LENG1 — обе 2026).
+1. **Starting set** — 5501 Tdark proteins from Pharos (the IDG consortium).
+2. **Data layers** — publication counts (NCBI gene2pubmed), cell line dependency
+   (DepMap Chronos 26Q1), physical interactions (BioPlex 3.0), subcellular localisation
+   (Human Protein Atlas).
+3. **Co-dependency** — Pearson correlation of dependency profiles across ~1100 lines, for
+   genes measured in at least 500 of them.
+4. **Removing artifacts** — this turned out to be the bulk of the work:
+   - cytoband neighbours excluded (copy-number artifact);
+   - multi-copy families excluded (OR, KRTAP, GOLGA6/8, AGAP, POTE, SPDYE and others): a
+     guide cutting many loci at once makes a gene look falsely essential;
+   - genes measured in few lines dropped, as they produce spurious correlations;
+   - manually removed: subunits of known complexes that are formally classed as unstudied
+     (mitochondrial ribosome, SAGA, minor spliceosome), and genes with recent functional
+     papers (TTC27, GPATCH1/LENG1, both 2026).
 
-### Финалисты
+### Finalists
 
-| ген | DepMap | ко-зависимость | BioPlex | статус в литературе |
+| gene | DepMap | co-dependency | BioPlex | status in the literature |
 |---|---|---|---|---|
-| **TMCO6 + ZNF511** | ср. −0.11, 7–8% линий < −0.5 | **взаимно лучшие, r = 0.60** | друг с другом и с кольцом LSm | связь не описана → **взят в разбор** |
-| **SS18L2** | ср. −2.59, нужен 99% линий | слабая (0.32) | весь комплекс BAF (SWI/SNF) | числится субъединицей BAF, но почему незаменим — неизвестно |
-| **C19orf25** | ср. −0.13, 12% линий | BNIP1 0.52, NBAS 0.47 | все 8 субъединиц комплекса синтаксина-18/NRZ | упомянут в обзорных работах, своей статьи нет |
+| **TMCO6 + ZNF511** | mean −0.11, 7-8% of lines < −0.5 | **reciprocal best, r = 0.60** | with each other and with an LSm ring | link not described → **taken forward** |
+| **SS18L2** | mean −2.59, required by 99% of lines | weak (0.32) | the entire BAF (SWI/SNF) complex | listed as a BAF subunit, but why it is indispensable is unknown |
+| **C19orf25** | mean −0.13, 12% of lines | BNIP1 0.52, NBAS 0.47 | all 8 subunits of the syntaxin-18/NRZ complex | mentioned in systematic surveys, no paper of its own |
 
 ---
 
-## Что в репозитории
+## Repository layout
 
 ```
-TMCO6_ZNF511.md         ← основной разбор, 9 разделов
-letter_draft.md         ← черновик письма в лабораторию
-src/bin/                ← 12 расчётных программ на Rust
-data/                   ← результаты расчётов (сырые выгрузки не хранятся)
-af3/                    ← задания и результаты AlphaFold Server
+TMCO6_ZNF511.md      main analysis, nine sections
+letter_draft.md      draft letter to a lab
+src/bin/             12 analysis programs in Rust
+data/                computed results (raw downloads are not stored)
+af3/                 AlphaFold Server jobs and results
 ```
 
-### Программы
+### Programs
 
-| программа | что делает |
+| program | what it does |
 |---|---|
-| `main.rs` | свод Tdark × DepMap × BioPlex × HPA, поиск кандидатов |
-| `pair.rs` | профиль пары в DepMap: панель генов, типы опухолей, модуль |
-| `nullpc.rs` | **проверка на артефакт**: вычитает шум скрининга, оценённый по 193 неэкспрессируемым генам обонятельных рецепторов |
-| `plddt.rs` | профиль модели AlphaFold: pLDDT, спиральность, гидрофобность, экспонированность |
-| `map_sites.rs` | перенос функциональных позиций с белка-образца по структурному выравниванию |
-| `conserve.rs` | консервация остатков по ортологам, одна последовательность на вид |
-| `cooccur.rs` | совместное присутствие двух семейств в 2087 протеомах |
-| `rbh.rs` | **проверка ортологии**: лучшее попадание по панели эталонов |
-| `ident.rs` | идентичность к двум эталонам сразу |
-| `njtree.rs` | дерево присоединения соседей с бутстрепом и проверкой гипотез о ветвях |
-| `motif_presence.rs` | связь наличия мотива с наличием партнёра, точный тест Фишера |
-| `interface.rs` | интерфейс цепей в модели комплекса |
-| `af3_report.rs` | разбор выдачи AlphaFold Server: ipTM по парам цепей, контакты |
+| `main.rs` | joins Tdark x DepMap x BioPlex x HPA and ranks candidates |
+| `pair.rs` | DepMap profile of a pair: gene panel, tumour types, co-dependency module |
+| `nullpc.rs` | **artifact control**: removes screening noise estimated from 193 non-expressed olfactory receptor genes |
+| `plddt.rs` | AlphaFold model profile: pLDDT, helicity, hydrophobicity, burial |
+| `map_sites.rs` | transfers functional positions from a reference protein via structural alignment |
+| `conserve.rs` | per-residue conservation across orthologs, one sequence per species |
+| `cooccur.rs` | co-occurrence of two families across 2087 proteomes |
+| `rbh.rs` | **orthology control**: best hit against a panel of reference proteins |
+| `ident.rs` | identity to two references at once |
+| `njtree.rs` | neighbor-joining tree with bootstrap and explicit tests of named clades |
+| `motif_presence.rs` | association between a motif and a partner's presence, Fisher's exact test |
+| `interface.rs` | chain interface in a complex model |
+| `af3_report.rs` | parses AlphaFold Server output: per-chain-pair ipTM and contacts |
 
-Имена цепей и белков программы определяют сами по последовательностям, так что перепутать
-дикий тип с вариантом нельзя.
+Chains and proteins are identified by sequence rather than by file order, so a wild type
+cannot be confused with a variant.
 
 ---
 
-## Воспроизвести
+## Reproducing
 
-Нужен Rust (edition 2024) и `curl`.
+Requires Rust (edition 2024) and `curl`.
 
 ```bash
 cargo build --release
 
-# Поиск кандидатов (большие файлы — во временную папку)
+# Candidate search (large inputs go to a temporary directory)
 S=$(mktemp -d)
 curl -sL https://ndownloader.figshare.com/files/67214582 -o $S/gene_effect.csv
 curl -s https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2pubmed.gz -o $S/gene2pubmed.gz
 cargo run --release -- $S/gene_effect.csv $S/gene2pubmed.gz
 
-# Разбор пары
+# Analysis of the pair
 ./target/release/pair      $S/gene_effect.csv data/tmco6/ach_disease.tsv data/tmco6/dm
 ./target/release/nullpc    $S/gene_effect.csv 10 TMCO6 ZNF511 LSM8 USB1 LARP7 SNUPN
 ./target/release/plddt     data/tmco6/AF-TMCO6.pdb 1-60 338-358 386-406
@@ -123,28 +128,28 @@ cargo run --release -- $S/gene_effect.csv $S/gene2pubmed.gz
 ./target/release/af3_report af3/results af3/inputs.fa
 ```
 
-Остальные загрузки — в **[data/README.md](data/README.md)**.
+Remaining downloads are listed in **[data/README.md](data/README.md)**.
 
 ---
 
-## Источники и условия использования
+## Sources and terms of use
 
-Работа опирается на открытые данные: **DepMap** (Broad Institute), **BioPlex 3.0**,
+This work rests on open data from **DepMap** (Broad Institute), **BioPlex 3.0**,
 **Human Protein Atlas**, **UniProt**, **InterPro/Pfam**, **Pharos/IDG**, **NCBI Gene**,
-**Cellosaurus**, **Ensembl**, **Foldseek**, **AlphaFold DB** и **Europe PMC**. Условия
-у каждого источника свои — смотрите на их сайтах.
+**Cellosaurus**, **Ensembl**, **Foldseek**, **AlphaFold DB** and **Europe PMC**. Each source
+carries its own terms; check them at the source.
 
-Сырые выгрузки из этих баз в репозитории не хранятся: у каждой своя лицензия, и вместе они
-весят под 60 МБ. В `data/README.md` лежат команды, которыми они были получены.
+Raw downloads from those databases are not stored here: each carries its own licence, and
+together they run to some 60 MB. `data/README.md` lists the commands that produced them.
 
-> **Модели в `af3/results/` получены на AlphaFold Server и распространяются по его
-> условиям: только некоммерческое использование.** Полный текст лежит рядом с каждой
-> моделью (`af3/results/*/terms_of_use.md`) и опубликован на
-> [alphafoldserver.com/output-terms](https://alphafoldserver.com/output-terms).
-> Хранятся только лучшие модели (ранг 0) и их сводки; остальное воспроизводится повторным
-> запуском `af3/alphafold_server_jobs.json`.
+> **The models in `af3/results/` were produced on AlphaFold Server and are distributed under
+> its terms: non-commercial use only.** The full text sits next to each model
+> (`af3/results/*/terms_of_use.md`) and is published at
+> [alphafoldserver.com/output-terms](https://alphafoldserver.com/output-terms). Only the
+> top-ranked models and their confidence summaries are stored; the rest is reproduced by
+> re-running `af3/alphafold_server_jobs.json`.
 
-Код в `src/` написан для этой работы — берите свободно.
+The code under `src/` was written for this work — use it freely.
 
-Если что-то из выводов уже известно, ошибочно или вы видите изъян в рассуждении —
-напишите, это будет полезно.
+If any of these conclusions is already known, is wrong, or rests on a flaw you can see,
+please say so. That would be useful.

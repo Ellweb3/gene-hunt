@@ -1,5 +1,5 @@
-//! Перенос позиций с целевого белка на запрос по структурному выравниванию Foldseek.
-//! map_sites <aln.json> <pos[:label]> ...   (позиции в нумерации цели, 1-based)
+//! Map positions from a target protein onto a query via a Foldseek structural alignment.
+//! map_sites <aln.json> <pos[:label]> ...   (positions in target numbering, 1-based)
 use std::collections::HashMap;
 use std::fs;
 

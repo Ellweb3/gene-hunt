@@ -1,36 +1,39 @@
-# Задания для AlphaFold Server
+# AlphaFold Server jobs
 
-`alphafold_server_jobs.json` содержит 6 заданий. Последовательности взяты из UniProt
-(`inputs.fa`), U6 snRNA — из Ensembl (RNU6-1, ENSG00000206625, 107 нт).
+`alphafold_server_jobs.json` holds six jobs. Protein sequences come from UniProt
+(`inputs.fa`); the U6 snRNA comes from Ensembl (RNU6-1, ENSG00000206625, 107 nt).
 
-| № | состав | зачем |
+| # | composition | purpose |
 |---|---|---|
-| 1 | TMCO6 + ZNF511 + LSm2–8 + U6 snRNA | главный вопрос: куда пара садится на кольцо U6 |
-| 2 | TMCO6 + ZNF511 + LSm2–8 | то же без РНК: зависит ли посадка от РНК |
-| 3 | TMCO6 + ZNF511 + LSm1–7 | контроль: цитоплазматическое кольцо распада мРНК |
-| 4 | TMCO6 + ZNF511 | дикий тип, с ним сравнивать 5–6 |
-| 5 | TMCO6 E134R/Y171W + ZNF511 | разрушение перестроенного сайта TMCO6 |
-| 6 | TMCO6 + ZNF511 R42A/F50A/R57A | разрушение мотива ZNF511 |
+| 1 | TMCO6 + ZNF511 + LSm2-8 + U6 snRNA | the main question: where the pair sits on the U6 ring |
+| 2 | TMCO6 + ZNF511 + LSm2-8 | the same without RNA: does binding depend on it |
+| 3 | TMCO6 + ZNF511 + LSm1-7 | control: the cytoplasmic mRNA-decay ring |
+| 4 | TMCO6 + ZNF511 | wild type, the baseline for 5 and 6 |
+| 5 | TMCO6 E134R/Y171W + ZNF511 | disrupting the rebuilt TMCO6 site |
+| 6 | TMCO6 + ZNF511 R42A/F50A/R57A | disrupting the ZNF511 motif |
 
-Порядок работы:
-1. Открыть https://alphafoldserver.com и войти под своим аккаунтом Google.
-2. Нажать **Upload JSON** и выбрать файл.
-3. Запустить все 6 заданий (дневная квота — 30).
-4. Скачать zip-архивы с результатами в `af3/results/`.
+To run them: sign in at https://alphafoldserver.com, use **Upload JSON**, then submit each
+job (**Continue and preview job** followed by **Confirm and submit job**). The daily quota is
+30 jobs.
 
-Что оценивать:
-- ipTM пары TMCO6–ZNF511 в заданиях 4–6. Предсказание: у мутантов ipTM упадёт.
-- В заданиях 1–3 — ipTM между парой и субъединицами LSm, и какие субъединицы касаются
-  ZNF511/TMCO6. Предсказание: с LSm2–8 (особенно LSm8) уверенность выше, чем с LSm1–7.
+## Results (2026-11-27)
 
-## Результаты (получены 2026-11-27)
-
-Все 6 заданий посчитаны, архивы распакованы в `results/<имя задания>/`. Разбор:
+All six jobs completed; archives are extracted into `results/<job name>/`. To parse them:
 
 ```bash
 cargo build --release --bin af3_report
 ./target/release/af3_report af3/results af3/inputs.fa > af3/report.txt
+
+# ALL_PAIRS=1 also prints contacts that do not involve TMCO6 or ZNF511,
+# which is how the LSm ring geometry and its RNA binding were checked
 ALL_PAIRS=1 ./target/release/af3_report af3/results/fold_1_tmco6_znf511_lsm2_8_u6 af3/inputs.fa
 ```
 
-Выводы — в разделе 9 файла [../TMCO6_ZNF511.md](../TMCO6_ZNF511.md).
+Outcome, in short: the pair was confirmed (ipTM 0.84, a 133/90-residue interface); the LSm
+ring is engaged by ZNF511 rather than TMCO6; and the point-mutant predictions failed. Full
+discussion in section 9 of [../TMCO6_ZNF511.md](../TMCO6_ZNF511.md).
+
+> The models here were produced on AlphaFold Server and are distributed under its terms:
+> non-commercial use only. The full text sits in `results/*/terms_of_use.md` and at
+> [alphafoldserver.com/output-terms](https://alphafoldserver.com/output-terms). Only the
+> top-ranked model and its confidence summary are stored per job.

@@ -1,8 +1,8 @@
-//! Разбор пары TMCO6–ZNF511 по DepMap Chronos.
+//! Analysis of the TMCO6–ZNF511 pair using DepMap Chronos.
 //! pair <gene_effect.csv> <ach_disease.tsv> <out_prefix>
-//! 1) корреляции пары с панелью генов LSm/сплайсинга/распада мРНК;
-//! 2) типы опухолей, где пара нужнее (Welch t против остальных);
-//! 3) геномные корреляты среднего профиля пары (модуль).
+//! 1) correlations of the pair with an LSm/splicing/mRNA-decay gene panel;
+//! 2) tumor types where the pair is more essential (Welch t vs. the rest);
+//! 3) genome-wide correlates of the mean pair profile (module).
 use std::collections::HashMap;
 use std::fs;
 use std::io::Write;
@@ -52,7 +52,7 @@ fn main() {
     let z = &cols[idx["ZNF511"]];
     let pairavg: Vec<f64> = t.iter().zip(z).map(|(x, y)| (x + y) / 2.0).collect();
 
-    // 1. панель
+    // 1. panel
     let panel = [
         "LSM1", "LSM2", "LSM3", "LSM4", "LSM5", "LSM6", "LSM7", "LSM8", "LSM10", "LSM11", "LSM12", "LSM14A", "PATL1", "DDX6",
         "SART3", "PRPF3", "PRPF4", "PRPF31", "PRPF8", "USB1", "SNRNP200", "EFTUD2", "XRN1", "DCP2", "TUT1", "MEPCE", "LARP7",
@@ -70,7 +70,7 @@ fn main() {
         }
     }
 
-    // 2. типы опухолей
+    // 2. tumor types
     let dmap: HashMap<String, String> = fs::read_to_string(dis).unwrap().lines().filter_map(|l| {
         let v: Vec<&str> = l.split('\t').collect();
         (v.len() >= 3).then(|| (v[0].to_string(), v[2].to_string()))
@@ -99,7 +99,7 @@ fn main() {
     for r in &rows {
         writeln!(f, "{}\t{}\t{:.3}\t{:.2}\t{:.2}", r.1, r.3, r.2, r.4, r.0).unwrap();
     }
-    // самые зависимые линии
+    // most dependent cell lines
     let mut order: Vec<usize> = (0..ids.len()).filter(|&i| pairavg[i].is_finite()).collect();
     order.sort_by(|&x, &y| pairavg[x].partial_cmp(&pairavg[y]).unwrap());
     let mut f = fs::File::create(format!("{out}_toplines.tsv")).unwrap();
@@ -108,7 +108,7 @@ fn main() {
         writeln!(f, "{}\t{}\t{:.2}\t{:.2}", ids[i], dmap.get(&ids[i]).map(|s| s.as_str()).unwrap_or("NA"), t[i], z[i]).unwrap();
     }
 
-    // 3. модуль: корреляты среднего профиля
+    // 3. module: correlates of the mean profile
     let mut cor: Vec<(f64, &str)> = (0..g).filter_map(|j| {
         let (r, _) = pearson(&pairavg, &cols[j]);
         r.is_finite().then(|| (r, header[j].as_str()))

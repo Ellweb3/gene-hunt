@@ -1,20 +1,20 @@
-//! Проверка ко-зависимости на технический артефакт.
+//! Control for technical artifacts in co-dependency analysis.
 //! nullpc <gene_effect.csv> <K> <geneA> <geneB> [extra genes...]
-//! Нулевой набор — однокопийные обонятельные рецепторы (OR\d…), которые не экспрессируются
-//! в раковых линиях: их общая структура = шум скрининга. Берём K главных компонент
-//! нулевого набора, вычитаем их из профилей и считаем частные корреляции.
+//! The null set consists of single-copy olfactory receptors (OR\d…) that are not expressed
+//! in cancer cell lines: their shared structure equals screening noise. We extract K principal
+//! components of the null set, regress them out of gene profiles, and compute partial correlations.
 use rayon::prelude::*;
 use std::collections::HashMap;
 use std::fs;
 
-/// z-оценка по измеренным линиям; пропуски → 0 (среднее), чтобы все гены были на одной сетке
+/// Z-score over measured cell lines; missing values → 0 (mean) so all genes share the same grid.
 fn standardize(v: &[f64]) -> Vec<f64> {
     let fin: Vec<f64> = v.iter().copied().filter(|x| x.is_finite()).collect();
     let n = fin.len() as f64;
     let m = fin.iter().sum::<f64>() / n;
     let sd = (fin.iter().map(|x| (x - m).powi(2)).sum::<f64>() / (n - 1.0)).sqrt();
     let z: Vec<f64> = v.iter().map(|x| if x.is_finite() { (x - m) / sd } else { 0.0 }).collect();
-    // перенормировка, чтобы dot/(N-1) оставалось корреляцией
+    // renormalize so that dot/(N-1) remains a correlation
     let s = (z.iter().map(|x| x * x).sum::<f64>() / (z.len() as f64 - 1.0)).sqrt();
     z.iter().map(|x| x / s).collect()
 }
@@ -28,7 +28,7 @@ fn r(a: &[f64], b: &[f64]) -> f64 {
     dot(&a, &b) / (a.len() as f64 - 1.0)
 }
 
-/// остаток после регрессии на ортонормированные компоненты
+/// Residual after regression on orthonormal components.
 fn residual(v: &[f64], pcs: &[Vec<f64>]) -> Vec<f64> {
     let mut res = standardize(v);
     for p in pcs {
@@ -52,11 +52,11 @@ fn main() {
             cols[j].push(v.parse::<f64>().unwrap_or(f64::NAN));
         }
     }
-    // только гены без пропусков, чтобы всё считалось на одних и тех же линиях
+    // only genes with enough non-missing values, so everything is computed on the same cell lines
     let full: Vec<usize> = (0..header.len()).filter(|&j| cols[j].iter().filter(|x| x.is_finite()).count() >= 1000).collect();
     let idx: HashMap<&str, usize> = full.iter().map(|&j| (header[j].as_str(), j)).collect();
-    // нулевой набор: OR<цифра>…, исключая многокопийные подсемейства (оставляем все OR, но
-    // требуем |mean| < 0.15 — сильный сдвиг означает многократный разрез)
+    // null set: OR<digit>…, excluding multi-copy subfamilies (keep all OR genes but
+    // require |mean| < 0.15 — a strong mean shift indicates a multi-copy locus)
     let null: Vec<usize> = full.iter().copied().filter(|&j| {
         let h = &header[j];
         h.starts_with("OR") && h[2..].chars().next().is_some_and(|c| c.is_ascii_digit()) && {
@@ -68,7 +68,7 @@ fn main() {
     let n = cols[0].len();
     eprintln!("lines {n}, full genes {}, null OR genes {}", full.len(), null.len());
     let z: Vec<Vec<f64>> = null.iter().map(|&j| standardize(&cols[j])).collect();
-    // PCs в пространстве линий: power iteration на X·Xᵀ без явной матрицы
+    // PCs in cell-line space: power iteration on X·Xᵀ without forming the matrix explicitly
     let mut pcs: Vec<Vec<f64>> = Vec::new();
     let mut total = 0.0;
     for zz in &z {
@@ -115,7 +115,7 @@ fn main() {
             println!("{g}: raw r with {} {:.3} / {} {:.3}; after PCs {:.3} / {:.3}", a[3], r(&cols[ga], &cols[j]), a[4], r(&cols[gb], &cols[j]), r(&ra, &rg), r(&rb, &rg));
         }
     }
-    // фон: распределение r между случайными парами нулевых генов до/после
+    // background: distribution of r between random null-gene pairs before/after correction
     let zr: Vec<Vec<f64>> = null.par_iter().map(|&j| residual(&cols[j], &pcs)).collect();
     let mut raw = Vec::new();
     let mut adj = Vec::new();
@@ -130,7 +130,7 @@ fn main() {
         let q = |p: f64| v[((v.len() - 1) as f64 * p) as usize];
         println!("null OR pairs {name}: median {:.3}, 99% {:.3}, 99.9% {:.3}, max {:.3}", q(0.5), q(0.99), q(0.999), v[v.len() - 1]);
     }
-    // геномный фон после поправки: место партнёра среди всех генов
+    // genome-wide background after correction: rank of partner gene among all genes
     let all: Vec<(f64, &str)> = full.par_iter().filter(|&&j| j != ga).map(|&j| (r(&ra, &residual(&cols[j], &pcs)), header[j].as_str())).collect();
     let mut all = all;
     all.sort_by(|x, y| y.0.partial_cmp(&x.0).unwrap());

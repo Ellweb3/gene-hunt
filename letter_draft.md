@@ -1,23 +1,22 @@
-# Черновик письма в лабораторию
+# Draft letter to a lab
 
-Два адресата, письмо одно, различается только второй абзац.
+One letter, two possible recipients; only the second paragraph differs.
 
-| кому | почему именно они | ссылка |
+| recipient | why them | reference |
 |---|---|---|
-| **Samuel Butcher / Eric Montemayor** (UW–Madison) | структуры U6 snRNP и кольца Lsm2–8 с 3′-концом U6 (Nat Commun 2018; PDB 6ASO, 6PPP); работают с механизмом сборки U6 | [статья](https://www.nature.com/articles/s41467-018-04145-4) |
-| **Joanna Kufel** (IGIB, Варшавский университет) | их собственная очистка AtLSM8 содержит гомолог ZNF511 — это прямо наш довод; работают и с дрожжами, и с растениями | [лаборатория](https://kufel.igib.uw.edu.pl/lsm-complexes/) |
+| **Samuel Butcher / Eric Montemayor** (UW–Madison) | structures of the U6 snRNP and of the Lsm2-8 ring bound to processed U6 (Nat Commun 2018; PDB 6ASO, 6PPP); they work on U6 assembly mechanism | [paper](https://www.nature.com/articles/s41467-018-04145-4) |
+| **Joanna Kufel** (IGIB, University of Warsaw) | their own AtLSM8 purification contains the ZNF511 homolog, which is the strongest piece of evidence here; they work in both yeast and plants | [lab](https://kufel.igib.uw.edu.pl/lsm-complexes/) |
 
-Перед отправкой: вставить своё имя и обратный адрес вместо `[…]`, проверить текущий
-адрес лаборатории на сайте, приложить ссылку на репозиторий (сейчас он приватный — либо
-открыть его, либо приложить PDF с разделами 7–9).
+Before sending: fill in the name and return address in place of `[…]`, check the lab's
+current contact details on their site, and link this repository.
 
 ---
 
-## Тема письма
+## Subject
 
 `An uncharacterized candidate partner of the nuclear Lsm2-8 ring: TMCO6-ZNF511`
 
-## Текст
+## Body
 
 Dear Professor [Name],
 
@@ -26,11 +25,11 @@ that appear to form a module associated with the nuclear Lsm2-8 ring. I have no 
 capacity, so I am sharing it in case it is useful to your group. All data and code are
 open; I would be glad to be told if this is already known or if the reasoning is flawed.
 
-**[вариант для Butcher/Montemayor]**
+**[variant for Butcher / Montemayor]**
 Your structures of the U6 snRNP and of Lsm2-8 bound to processed U6 are what let me
 interpret the prediction below, and the question it raises is a structural one.
 
-**[вариант для Kufel]**
+**[variant for Kufel]**
 The strongest independent evidence comes from your own data: in Golisz et al. 2013
 (NAR, PMID 23620288), At5g14140 was recovered in two of three AtLSM8 purifications,
 alongside Prp24/SART3 and Brr2, and was absent from the AtLSM1a purifications. At5g14140
@@ -85,8 +84,8 @@ diseases, though this is speculation on my part. Note also that a 2024 study
 T cells; the DNA-binding N-terminus is consistent with its basic IBB-like character, but
 the membrane interpretation is not consistent with the fold.
 
-Data, code and the full write-up: [ссылка на репозиторий]
+Data, code and the full write-up: https://github.com/Ellweb3/gene-hunt
 
 With thanks for your time,
-[Имя]
-[Обратный адрес]
+[Name]
+[Return address]

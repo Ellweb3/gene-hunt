@@ -1,5 +1,5 @@
-//! Профиль модели AlphaFold: pLDDT по участкам, спирали (по CA-геометрии), гидрофобность
-//! (Kyte–Doolittle, окно 19) и доступность остатков (число соседей CA в 10 Å).
+//! AlphaFold model profile: pLDDT by segment, helices (from Cα geometry), hydrophobicity
+//! (Kyte–Doolittle, window 19), and residue accessibility (Cα neighbor count within 10 Å).
 //! plddt <model.pdb> [start-end ...]
 use std::fs;
 
@@ -31,7 +31,7 @@ fn main() {
     }
     let n = seq.len();
     let d = |i: usize, j: usize| ((0..3).map(|k| (ca[i][k] - ca[j][k]).powi(2)).sum::<f64>()).sqrt();
-    // α-спираль: d(i,i+3) ≈ 5.0–5.6 Å и d(i,i+4) ≈ 5.8–6.6 Å
+    // α-helix: d(i,i+3) ≈ 5.0–5.6 Å and d(i,i+4) ≈ 5.8–6.6 Å
     let helix: Vec<bool> = (0..n).map(|i| {
         let ok = |s: usize| s + 4 < n && (4.6..5.8).contains(&d(s, s + 3)) && (5.6..6.9).contains(&d(s, s + 4));
         (i.saturating_sub(3)..=i).any(ok)
@@ -39,7 +39,7 @@ fn main() {
     let nb: Vec<usize> = (0..n).map(|i| (0..n).filter(|&j| j != i && d(i, j) < 10.0).count()).collect();
     println!("length {n}");
     println!("sequence {}", String::from_utf8_lossy(&seq));
-    // пятидесятки
+    // 25-residue blocks
     println!("block\tmean_pLDDT\thelix%\tKDmax19\tmean_neighbors");
     for s in (0..n).step_by(25) {
         let e = (s + 25).min(n);

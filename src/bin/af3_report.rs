@@ -1,12 +1,12 @@
-//! Разбор результатов AlphaFold Server (AlphaFold 3).
-//! af3_report <папка с распакованными результатами> <reference.fa>
+//! Parse AlphaFold Server (AlphaFold 3) results.
+//! af3_report <directory of unpacked results> <reference.fa>
 //!
-//! Для каждого задания печатает:
-//!   - общие метрики (ipTM, pTM, ranking score, клэши, доля беспорядка);
-//!   - матрицу ipTM по парам цепей с человекочитаемыми именами;
-//!   - контакты между цепями (остатки ближе 4.5 Å) для пар с участием TMCO6/ZNF511.
-//! Имя цепи определяется по лучшему совпадению её последовательности с reference.fa;
-//! при неполном совпадении к имени добавляется число замен.
+//! For each job prints:
+//!   - overall metrics (ipTM, pTM, ranking score, clashes, fraction disordered);
+//!   - per-chain-pair ipTM matrix with human-readable chain names;
+//!   - inter-chain contacts (residues closer than 4.5 Å) for pairs involving TMCO6/ZNF511.
+//! Chain names are assigned by best-match of chain sequence against reference.fa;
+//! when the match is imperfect the number of mismatches is appended to the name.
 use std::collections::BTreeMap;
 use std::fs;
 use std::path::{Path, PathBuf};
@@ -28,7 +28,7 @@ struct Atom {
     plddt: f64,
 }
 
-/// Парсер цикла atom_site из mmCIF: колонки ищутся по именам, а не по позициям.
+/// mmCIF atom_site loop parser: columns are looked up by name, not by position.
 fn parse_cif(path: &Path) -> Vec<Atom> {
     let txt = fs::read_to_string(path).unwrap();
     let mut cols: Vec<String> = Vec::new();
@@ -81,7 +81,7 @@ fn read_fasta(p: &str) -> Vec<(String, String)> {
     }).collect()
 }
 
-/// минимальное число замен при равной длине; иначе None
+/// Minimum number of mismatches when lengths are equal; otherwise None.
 fn mismatches(a: &str, b: &str) -> Option<usize> {
     (a.len() == b.len()).then(|| a.bytes().zip(b.bytes()).filter(|(x, y)| x != y).count())
 }
@@ -98,7 +98,7 @@ fn jnum(v: &serde_json::Value, k: &str) -> String {
 fn main() {
     let a: Vec<String> = std::env::args().collect();
     let refs = read_fasta(&a[2]);
-    // собираем задания: ключ — префикс имени файла до _summary_confidences
+    // collect jobs: key is the filename prefix up to _summary_confidences
     let mut jobs: BTreeMap<String, (Option<PathBuf>, Option<PathBuf>)> = BTreeMap::new();
     let mut stack = vec![PathBuf::from(&a[1])];
     while let Some(d) = stack.pop() {
@@ -108,7 +108,7 @@ fn main() {
                 stack.push(p);
                 continue;
             }
-            // берём только лучшую модель (ранг 0)
+            // take only the best model (rank 0)
             let n = p.file_name().unwrap().to_string_lossy().to_string();
             if let Some(key) = n.strip_suffix("_model_0.cif") {
                 jobs.entry(key.to_string()).or_default().0 = Some(p);
@@ -120,11 +120,11 @@ fn main() {
     for (job, (cif, conf)) in &jobs {
         println!("\n===== {job}");
         let Some(cif) = cif else {
-            println!("  нет .cif");
+            println!("  no .cif found");
             continue;
         };
         let atoms = parse_cif(cif);
-        // последовательность каждой цепи
+        // sequence of each chain
         let mut chains: BTreeMap<String, Vec<(i64, String)>> = BTreeMap::new();
         for at in &atoms {
             let e = chains.entry(at.chain.clone()).or_default();
@@ -138,17 +138,17 @@ fn main() {
             let best = refs.iter().filter_map(|(n, rs)| mismatches(&s, rs).map(|m| (m, n))).min();
             name.insert(c.clone(), match best {
                 Some((0, n)) => n.clone(),
-                Some((m, n)) => format!("{n}[{m} замен]"),
-                None => format!("цепь {c} ({} ост.)", s.len()),
+                Some((m, n)) => format!("{n}[{m} sub]"),
+                None => format!("chain {c} ({} res.)", s.len()),
             });
         }
-        println!("  цепи: {}", name.iter().map(|(c, n)| format!("{c}={n}")).collect::<Vec<_>>().join(", "));
+        println!("  chains: {}", name.iter().map(|(c, n)| format!("{c}={n}")).collect::<Vec<_>>().join(", "));
 
         if let Some(conf) = conf {
             let v: serde_json::Value = serde_json::from_str(&fs::read_to_string(conf).unwrap()).unwrap();
-            println!("  ipTM {} | pTM {} | ranking {} | клэш {} | беспорядок {}",
+            println!("  ipTM {} | pTM {} | ranking {} | clash {} | disordered {}",
                 jnum(&v, "iptm"), jnum(&v, "ptm"), jnum(&v, "ranking_score"), jnum(&v, "has_clash"), jnum(&v, "fraction_disordered"));
-            // имена цепей берём из самого файла, а не из порядка в структуре
+            // chain ids are taken from the JSON file, not from the structural order
             let ids: Vec<String> = v["chain_ids"].as_array().map(|a| a.iter().map(|x| x.as_str().unwrap_or("?").to_string()).collect())
                 .unwrap_or_else(|| chains.keys().cloned().collect());
             if let Some(m) = v["chain_pair_iptm"].as_array() {
@@ -157,9 +157,9 @@ fn main() {
                 for (i, row) in m.iter().enumerate() {
                     for (j, x) in row.as_array().unwrap().iter().enumerate() {
                         if j > i {
-                            let unk = format!("цепь {}", ids[i]);
+                            let unk = format!("chain {}", ids[i]);
                             let ni = name.get(&ids[i]).unwrap_or(&unk).clone();
-                            let nj = name.get(&ids[j]).cloned().unwrap_or_else(|| format!("цепь {}", ids[j]));
+                            let nj = name.get(&ids[j]).cloned().unwrap_or_else(|| format!("chain {}", ids[j]));
                             let iptm = x.as_f64().unwrap_or(f64::NAN);
                             let pm = pae.and_then(|p| p[i][j].as_f64()).unwrap_or(f64::NAN);
                             rows.push((iptm, format!("    {ni} — {nj}\tipTM {iptm:.2}\tPAE_min {pm:.1}")));
@@ -167,18 +167,18 @@ fn main() {
                     }
                 }
                 rows.sort_by(|x, y| y.0.partial_cmp(&x.0).unwrap());
-                println!("  пары цепей (по убыванию ipTM):");
+                println!("  chain pairs (descending ipTM):");
                 for (_, s) in &rows {
                     println!("{s}");
                 }
             }
         }
-        // межцепочечные контакты
+        // inter-chain contacts
         let keys: Vec<String> = chains.keys().cloned().collect();
         for i in 0..keys.len() {
             for j in (i + 1)..keys.len() {
                 let (ca, cb) = (&keys[i], &keys[j]);
-                // по умолчанию только пары с участием TMCO6/ZNF511; ALL_PAIRS=1 — все
+                // by default only pairs involving TMCO6/ZNF511; ALL_PAIRS=1 to show all
                 let all = std::env::var("ALL_PAIRS").is_ok();
                 let want = |c: &String| all || name[c].starts_with("TMCO6") || name[c].starts_with("ZN511");
                 if !want(ca) && !want(cb) {
@@ -202,7 +202,7 @@ fn main() {
                 }
                 let fmt = |m: &BTreeMap<i64, (String, f64)>| m.iter().map(|(k, v)| format!("{}{k}", three_to_one(&v.0))).collect::<Vec<_>>().join(" ");
                 let pl = |m: &BTreeMap<i64, (String, f64)>| m.values().map(|v| v.1).sum::<f64>() / m.len() as f64;
-                println!("  контакт {} ({} ост., pLDDT {:.0}) — {} ({} ост., pLDDT {:.0})", name[ca], ra.len(), pl(&ra), name[cb], rb.len(), pl(&rb));
+                println!("  contact {} ({} res., pLDDT {:.0}) — {} ({} res., pLDDT {:.0})", name[ca], ra.len(), pl(&ra), name[cb], rb.len(), pl(&rb));
                 println!("    {}: {}", name[ca], fmt(&ra));
                 println!("    {}: {}", name[cb], fmt(&rb));
             }
