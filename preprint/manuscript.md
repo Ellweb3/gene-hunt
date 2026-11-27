@@ -1,6 +1,6 @@
 # TMCO6 is not a membrane protein but an importin-alpha-like solenoid that binds ZNF511, a candidate module at the nuclear LSm2-8 ring
 
-**Eldar Sufiyanov**
+**Eldar Sufiyanov** — ORCID 0009-0003-8954-3166
 
 Independent researcher, Maldonado, Uruguay.
 
