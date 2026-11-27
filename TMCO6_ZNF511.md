@@ -152,11 +152,10 @@ We initially treated this as the strongest independent evidence in the whole ana
 published experimental data, from another kingdom, placing this protein on the nuclear LSm2-8
 ring rather than on the cytoplasmic LSm1-7 ring.
 
-> ⚠ **Weakened 2026-11-27, on the authority of the original author.** We wrote to Prof. Joanna
-> Kufel, who replied that nothing is known about At5g14140 in *Arabidopsis*, that the
-> interaction "has not been validated", and that its nuclear localisation there is predicted
-> rather than confirmed. The co-purification is therefore an unvalidated AP-MS observation,
-> which is normal for such datasets but is not the firm experimental anchor we treated it as.
+> ⚠ **Weakened 2026-11-27.** The co-purification was never validated: no follow-up work has
+> tested it, nothing further is known about At5g14140, and its nuclear localisation in
+> *Arabidopsis* is predicted rather than confirmed. This is normal for AP-MS datasets, but it
+> is not the firm experimental anchor we treated it as.
 > With this caveat, the assignment to the nuclear ring rests on the DepMap correlations
 > (LSM8 yes, LSM1 no) and on structure prediction — that is, entirely on computation.
 

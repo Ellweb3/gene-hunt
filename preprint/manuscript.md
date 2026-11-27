@@ -35,8 +35,7 @@ R130/E134/Y171/Q217, a substitution fixed from lamprey to human, while the minor
 Several weak lines of evidence point to the nuclear LSm2-8 ring rather than the cytoplasmic
 LSm1-7 ring: the pair correlates with LSM8, SNUPN, USB1 and LARP7 but not with LSM1; in
 *Arabidopsis*, the ZNF511 homolog was recovered in AtLSM8 but not AtLSM1a purifications
-(Golisz et al. 2013, though its author tells us that interaction was never validated); and
-in a model of the full ring, the pair contacts the ring-specific subunit LSM8 more
+(Golisz et al. 2013, an unvalidated AP-MS observation); and in a model of the full ring, the pair contacts the ring-specific subunit LSM8 more
 confidently than LSM1. We state plainly that this last step
 is not established: the predicted pair-to-ring interfaces are small, and a prediction that
 point substitutions would disrupt the pair was tested and failed. We propose specific
@@ -180,14 +179,13 @@ Experimental support of a kind comes from another kingdom. In a FLAG purificatio
 AtLSM8 purifications alongside Prp24/SART3 and Brr2, and was absent from the AtLSM1a
 purifications.
 
-We initially treated this as the strongest independent evidence here. After submitting this
-manuscript we wrote to its senior author, who replied that nothing is known about At5g14140
-in *Arabidopsis*, that the interaction "has not been validated", and that its nuclear
-localisation there is predicted rather than confirmed (J. Kufel, personal communication,
-2026). The co-purification is therefore an unvalidated AP-MS observation. That is
-unremarkable for such datasets, but it is not the firm cross-kingdom anchor we took it for,
-and with this caveat the assignment to the nuclear ring rests on the DepMap correlations and
-on structure prediction alone.
+We initially treated this as the strongest independent evidence here, and that was a
+misjudgement. The co-purification is an unvalidated AP-MS observation: no follow-up work has
+tested it, nothing further is known about At5g14140 in *Arabidopsis*, and its nuclear
+localisation there is predicted rather than confirmed. That is unremarkable for such
+datasets, but it is not the firm cross-kingdom anchor we took it for, and with this caveat
+the assignment to the nuclear ring rests on the DepMap correlations and on structure
+prediction alone.
 
 ### 2.5 ZNF511 binds the TMCO6 groove
 
@@ -284,8 +282,8 @@ is the same in two independently produced models and is unchanged whether the pa
 alone or inside the ring.
 
 The association with the LSm2-8 ring is a hypothesis, and a weaker one than we first judged.
-We had leant on the recovery of the ZNF511 homolog in an AtLSM8 purification in plants; its
-senior author has since told us that this interaction was never validated (section 2.4).
+We had leant on the recovery of the ZNF511 homolog in an AtLSM8 purification in plants; that
+interaction has never been validated (section 2.4).
 What remains is concordant but circumstantial: the human genetic data distinguishing LSM8
 from LSM1, and the modelling. What our modelling adds is the direction of the
 interaction — ZNF511 would engage the ring, with TMCO6 carried along — and this is the part
@@ -310,8 +308,7 @@ defects in snRNP assembly and snRNA processing in humans.
   experimental evidence is from *Arabidopsis*.
 - The co-dependency analysis is restricted to cancer cell lines and may not reflect normal
   physiology.
-- The plant co-purification we relied on is an unvalidated AP-MS observation, per its own
-  author (section 2.4).
+- The plant co-purification we relied on is an unvalidated AP-MS observation (section 2.4).
 
 ### 3.2 Proposed experiments
 
