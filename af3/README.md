@@ -22,3 +22,15 @@
 - ipTM пары TMCO6–ZNF511 в заданиях 4–6. Предсказание: у мутантов ipTM упадёт.
 - В заданиях 1–3 — ipTM между парой и субъединицами LSm, и какие субъединицы касаются
   ZNF511/TMCO6. Предсказание: с LSm2–8 (особенно LSm8) уверенность выше, чем с LSm1–7.
+
+## Результаты (получены 2026-11-27)
+
+Все 6 заданий посчитаны, архивы распакованы в `results/<имя задания>/`. Разбор:
+
+```bash
+cargo build --release --bin af3_report
+./target/release/af3_report af3/results af3/inputs.fa > af3/report.txt
+ALL_PAIRS=1 ./target/release/af3_report af3/results/fold_1_tmco6_znf511_lsm2_8_u6 af3/inputs.fa
+```
+
+Выводы — в разделе 9 файла [../TMCO6_ZNF511.md](../TMCO6_ZNF511.md).

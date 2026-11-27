@@ -1,3 +1,9 @@
 target/
 data/*.gz
 data/*.zip
+af3/results/*.zip
+af3/results/*/msas/
+af3/results/*/templates/
+af3/results/*/*full_data*
+af3/results/*/*_model_[1-4].cif
+af3/results/*/*_summary_confidences_[1-4].json

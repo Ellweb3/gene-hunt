@@ -108,13 +108,12 @@ fn main() {
                 stack.push(p);
                 continue;
             }
+            // берём только лучшую модель (ранг 0)
             let n = p.file_name().unwrap().to_string_lossy().to_string();
-            if let Some(stem) = n.strip_suffix(".cif") {
-                let key = stem.rsplit_once("_model").map(|x| x.0).unwrap_or(stem).to_string();
-                jobs.entry(key).or_default().0.get_or_insert(p);
-            } else if n.contains("summary_confidences") {
-                let key = n.rsplit_once("_summary_confidences").map(|x| x.0.to_string()).unwrap_or(n);
-                jobs.entry(key).or_default().1.get_or_insert(p);
+            if let Some(key) = n.strip_suffix("_model_0.cif") {
+                jobs.entry(key.to_string()).or_default().0 = Some(p);
+            } else if let Some(key) = n.strip_suffix("_summary_confidences_0.json") {
+                jobs.entry(key.to_string()).or_default().1 = Some(p);
             }
         }
     }
@@ -149,18 +148,28 @@ fn main() {
             let v: serde_json::Value = serde_json::from_str(&fs::read_to_string(conf).unwrap()).unwrap();
             println!("  ipTM {} | pTM {} | ranking {} | клэш {} | беспорядок {}",
                 jnum(&v, "iptm"), jnum(&v, "ptm"), jnum(&v, "ranking_score"), jnum(&v, "has_clash"), jnum(&v, "fraction_disordered"));
+            // имена цепей берём из самого файла, а не из порядка в структуре
+            let ids: Vec<String> = v["chain_ids"].as_array().map(|a| a.iter().map(|x| x.as_str().unwrap_or("?").to_string()).collect())
+                .unwrap_or_else(|| chains.keys().cloned().collect());
             if let Some(m) = v["chain_pair_iptm"].as_array() {
-                let ids: Vec<&String> = chains.keys().collect();
-                println!("  ipTM по парам цепей:");
+                let pae = v["chain_pair_pae_min"].as_array();
+                let mut rows: Vec<(f64, String)> = Vec::new();
                 for (i, row) in m.iter().enumerate() {
                     for (j, x) in row.as_array().unwrap().iter().enumerate() {
                         if j > i {
-                            let (ni, nj) = (name.get(ids[i]), name.get(ids[j]));
-                            if let (Some(ni), Some(nj)) = (ni, nj) {
-                                println!("    {ni} — {nj}\t{:.2}", x.as_f64().unwrap_or(f64::NAN));
-                            }
+                            let unk = format!("цепь {}", ids[i]);
+                            let ni = name.get(&ids[i]).unwrap_or(&unk).clone();
+                            let nj = name.get(&ids[j]).cloned().unwrap_or_else(|| format!("цепь {}", ids[j]));
+                            let iptm = x.as_f64().unwrap_or(f64::NAN);
+                            let pm = pae.and_then(|p| p[i][j].as_f64()).unwrap_or(f64::NAN);
+                            rows.push((iptm, format!("    {ni} — {nj}\tipTM {iptm:.2}\tPAE_min {pm:.1}")));
                         }
                     }
+                }
+                rows.sort_by(|x, y| y.0.partial_cmp(&x.0).unwrap());
+                println!("  пары цепей (по убыванию ipTM):");
+                for (_, s) in &rows {
+                    println!("{s}");
                 }
             }
         }
@@ -169,7 +178,9 @@ fn main() {
         for i in 0..keys.len() {
             for j in (i + 1)..keys.len() {
                 let (ca, cb) = (&keys[i], &keys[j]);
-                let want = |c: &String| name[c].starts_with("TMCO6") || name[c].starts_with("ZN511");
+                // по умолчанию только пары с участием TMCO6/ZNF511; ALL_PAIRS=1 — все
+                let all = std::env::var("ALL_PAIRS").is_ok();
+                let want = |c: &String| all || name[c].starts_with("TMCO6") || name[c].starts_with("ZN511");
                 if !want(ca) && !want(cb) {
                     continue;
                 }
