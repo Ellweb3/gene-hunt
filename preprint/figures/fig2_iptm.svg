@@ -1,0 +1,51 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='900' height='360' viewBox='0 0 900 360'>
+<rect width='100%' height='100%' fill='white'/>
+<text x='70.0' y='24.0' font-family='Helvetica,Arial,sans-serif' font-size='15' text-anchor='start' font-weight='bold'>Figure 2. The TMCO6-ZNF511 interface is reproducible; the predicted mutants are not</text>
+<text x='70.0' y='40.0' font-family='Helvetica,Arial,sans-serif' font-size='11.5' text-anchor='start' fill='#555'>AlphaFold 3, top-ranked model of each job. Bars: ipTM of the TMCO6-ZNF511 chain pair.</text>
+<line x1='70.0' y1='270.0' x2='880.0' y2='270.0' stroke='#333' stroke-width='1'/>
+<line x1='70.0' y1='60.0' x2='70.0' y2='270.0' stroke='#333' stroke-width='1'/>
+<line x1='66.0' y1='270.0' x2='70.0' y2='270.0' stroke='#333' stroke-width='1'/>
+<text x='62.0' y='274.0' font-family='Helvetica,Arial,sans-serif' font-size='10.5' text-anchor='end' fill='#333'>0.0</text>
+<line x1='66.0' y1='228.0' x2='70.0' y2='228.0' stroke='#333' stroke-width='1'/>
+<text x='62.0' y='232.0' font-family='Helvetica,Arial,sans-serif' font-size='10.5' text-anchor='end' fill='#333'>0.2</text>
+<line x1='70.0' y1='228.0' x2='880.0' y2='228.0' stroke='#eee' stroke-width='1'/>
+<line x1='66.0' y1='186.0' x2='70.0' y2='186.0' stroke='#333' stroke-width='1'/>
+<text x='62.0' y='190.0' font-family='Helvetica,Arial,sans-serif' font-size='10.5' text-anchor='end' fill='#333'>0.4</text>
+<line x1='70.0' y1='186.0' x2='880.0' y2='186.0' stroke='#eee' stroke-width='1'/>
+<line x1='66.0' y1='144.0' x2='70.0' y2='144.0' stroke='#333' stroke-width='1'/>
+<text x='62.0' y='148.0' font-family='Helvetica,Arial,sans-serif' font-size='10.5' text-anchor='end' fill='#333'>0.6</text>
+<line x1='70.0' y1='144.0' x2='880.0' y2='144.0' stroke='#eee' stroke-width='1'/>
+<line x1='66.0' y1='102.0' x2='70.0' y2='102.0' stroke='#333' stroke-width='1'/>
+<text x='62.0' y='106.0' font-family='Helvetica,Arial,sans-serif' font-size='10.5' text-anchor='end' fill='#333'>0.8</text>
+<line x1='70.0' y1='102.0' x2='880.0' y2='102.0' stroke='#eee' stroke-width='1'/>
+<line x1='66.0' y1='60.0' x2='70.0' y2='60.0' stroke='#333' stroke-width='1'/>
+<text x='62.0' y='64.0' font-family='Helvetica,Arial,sans-serif' font-size='10.5' text-anchor='end' fill='#333'>1.0</text>
+<line x1='70.0' y1='60.0' x2='880.0' y2='60.0' stroke='#eee' stroke-width='1'/>
+<text x='20.0' y='165.0' font-family='Helvetica,Arial,sans-serif' font-size='12' text-anchor='middle' transform='rotate(-90 20 165.0)'>ipTM of the pair</text>
+<rect x='99.7' y='93.6' width='75.6' height='176.4' fill='#1a4b8c' />
+<text x='137.5' y='86.6' font-family='Helvetica,Arial,sans-serif' font-size='12' text-anchor='middle' font-weight='bold' fill='#222'>0.84</text>
+<text x='137.5' y='288.0' font-family='Helvetica,Arial,sans-serif' font-size='10.8' text-anchor='middle' fill='#333'>pair alone</text>
+<text x='137.5' y='301.0' font-family='Helvetica,Arial,sans-serif' font-size='10.8' text-anchor='middle' fill='#333'>(wild type)</text>
+<rect x='234.7' y='95.7' width='75.6' height='174.3' fill='#7aa3d0' />
+<text x='272.5' y='88.7' font-family='Helvetica,Arial,sans-serif' font-size='12' text-anchor='middle' font-weight='bold' fill='#222'>0.83</text>
+<text x='272.5' y='288.0' font-family='Helvetica,Arial,sans-serif' font-size='10.8' text-anchor='middle' fill='#333'>TMCO6</text>
+<text x='272.5' y='301.0' font-family='Helvetica,Arial,sans-serif' font-size='10.8' text-anchor='middle' fill='#333'>E134R/Y171W</text>
+<rect x='369.7' y='116.7' width='75.6' height='153.3' fill='#7aa3d0' />
+<text x='407.5' y='109.7' font-family='Helvetica,Arial,sans-serif' font-size='12' text-anchor='middle' font-weight='bold' fill='#222'>0.73</text>
+<text x='407.5' y='288.0' font-family='Helvetica,Arial,sans-serif' font-size='10.8' text-anchor='middle' fill='#333'>ZNF511</text>
+<text x='407.5' y='301.0' font-family='Helvetica,Arial,sans-serif' font-size='10.8' text-anchor='middle' fill='#333'>R42A/F50A/R57A</text>
+<rect x='504.7' y='112.5' width='75.6' height='157.5' fill='#9bbf9b' />
+<text x='542.5' y='105.5' font-family='Helvetica,Arial,sans-serif' font-size='12' text-anchor='middle' font-weight='bold' fill='#222'>0.75</text>
+<text x='542.5' y='288.0' font-family='Helvetica,Arial,sans-serif' font-size='10.8' text-anchor='middle' fill='#333'>with LSm2-8</text>
+<text x='542.5' y='301.0' font-family='Helvetica,Arial,sans-serif' font-size='10.8' text-anchor='middle' fill='#333'>(nuclear)</text>
+<rect x='639.7' y='114.6' width='75.6' height='155.4' fill='#9bbf9b' />
+<text x='677.5' y='107.6' font-family='Helvetica,Arial,sans-serif' font-size='12' text-anchor='middle' font-weight='bold' fill='#222'>0.74</text>
+<text x='677.5' y='288.0' font-family='Helvetica,Arial,sans-serif' font-size='10.8' text-anchor='middle' fill='#333'>with LSm2-8</text>
+<text x='677.5' y='301.0' font-family='Helvetica,Arial,sans-serif' font-size='10.8' text-anchor='middle' fill='#333'>+ U6 RNA</text>
+<rect x='774.7' y='114.6' width='75.6' height='155.4' fill='#9bbf9b' />
+<text x='812.5' y='107.6' font-family='Helvetica,Arial,sans-serif' font-size='12' text-anchor='middle' font-weight='bold' fill='#222'>0.74</text>
+<text x='812.5' y='288.0' font-family='Helvetica,Arial,sans-serif' font-size='10.8' text-anchor='middle' fill='#333'>with LSm1-7</text>
+<text x='812.5' y='301.0' font-family='Helvetica,Arial,sans-serif' font-size='10.8' text-anchor='middle' fill='#333'>(control)</text>
+<text x='70.0' y='332.0' font-family='Helvetica,Arial,sans-serif' font-size='11.5' text-anchor='start' fill='#333'>Two point substitutions in the rebuilt TMCO6 groove left the predicted interface unchanged, so they are</text>
+<text x='70.0' y='348.0' font-family='Helvetica,Arial,sans-serif' font-size='11.5' text-anchor='start' fill='#333'>not a usable experiment. The pair survives unchanged inside the LSm ring in every configuration tested.</text>
+</svg>

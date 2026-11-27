@@ -74,10 +74,20 @@ BioPlex, so the assignment to LSm2-8 rests on the plant experiment (section 5) a
   match over residues 1-486, E ~1e-12, at only ~19% sequence identity. PDB hits include
   importin-alpha bound to NLS peptides (1bk6, 6wx8 and others). The similarity is invisible
   at the sequence level, which is presumably why it was missed.
-- **The UniProt "transmembrane" segments** (338-358, 386-406) are not membrane helices. They
-  are buried in the hydrophobic core of the solenoid: pLDDT 94-97, ~18-20 Calpha neighbours
-  within 10 A, 0-1 charged residues. The "Membrane, multi-pass" annotation and the gene name
-  itself are both wrong.
+- **The UniProt "transmembrane" segments** (338-358, 386-406) are two ordinary helices of the
+  repeat stack. Both carry only computational evidence (ECO:0000255), and the subcellular
+  location is inferred from them (ECO:0000305); the entry cites no experimental support for a
+  membrane localisation.
+  > ⚠ **Corrected 2026-11-27.** An earlier version of this section argued that the segments
+  > are "buried, unlike a real transmembrane helix". That argument is wrong. Controls against
+  > experimentally supported membrane proteins show their transmembrane helices are equally or
+  > more buried in their own AlphaFold models (AQP1 20.8-23.6, GLUT1 20.3-25.6, ABCG2
+  > 16.0-21.2 Calpha neighbours, versus 18.3 and 20.0 here), because they pack against one
+  > another. A second attempt, the hydrophobicity of the solvent-exposed face, separates GLUT1
+  > (+3.8) and ABCG2 (+4.4) from their own soluble regions but fails on AQP1 (-0.3), which is
+  > almost entirely membrane-embedded; TMCO6 gives -0.4. Neither measure discriminates.
+  > The reassignment rests on the fold match and on the entry's own cross-references, not on
+  > these. See `src/bin/lipid_face.rs`.
 - **The N-terminus (1-60)** is disordered (pLDDT 46) and basic: 26 of 60 residues are
   charged, with RRRRER and RKARR clusters. Structurally this is the counterpart of the IBB
   domain by which importin-alpha binds importin-beta.

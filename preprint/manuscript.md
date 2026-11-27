@@ -11,11 +11,13 @@ Independent researcher. Correspondence: [email]
 TMCO6 ("transmembrane and coiled-coil domains 6") is annotated in UniProt as a multi-pass
 membrane protein, and that annotation has been used as the premise of published work. We
 show it is incorrect. Structural comparison assigns TMCO6 to the importin-alpha family over
-its entire length, and the two annotated transmembrane helices are buried in the hydrophobic
-core of an armadillo-repeat solenoid rather than exposed to solvent. The entry's own
-InterPro, Gene3D and SUPFAM cross-references already describe this fold, including an
-importin-beta-binding (IBB) domain signature, so the membrane assignment is internally
-inconsistent with the rest of the record.
+its entire length (E ~1e-12 at ~19% sequence identity), placing the two annotated
+transmembrane helices among the ordinary helices of an armadillo-repeat solenoid. The entry's
+own InterPro, Gene3D and SUPFAM cross-references already describe this fold, including an
+importin-beta-binding (IBB) domain signature, so the membrane assignment — which rests only
+on sequence-based prediction — is internally inconsistent with the rest of the record. We
+also report two measures that do *not* distinguish buried solenoid helices from genuine
+transmembrane helices, having tested them against experimentally supported membrane proteins.
 
 We then ask what this solenoid binds. TMCO6 and ZNF511, a zinc-finger protein of unknown
 function, are reciprocal top co-dependencies across 1208 cancer cell lines in DepMap
@@ -85,19 +87,26 @@ fungi as the highest-scoring hits outside the TMCO6 family itself. The match spa
 1-486 at E ~1e-12 despite only ~19% sequence identity, which is why it is invisible to
 sequence-based search. PDB hits include importin-alpha in complex with NLS peptides.
 
-The two annotated transmembrane segments are not membrane helices. In the model they lie in
-the hydrophobic core of the solenoid:
+Within that fold, the two annotated transmembrane segments (338-358, 386-406) are two
+ordinary helices of the repeat stack. Both features carry only computational evidence
+(ECO:0000255), and the subcellular location is inferred from them (ECO:0000305); no
+experimental support for a membrane localisation is cited in the entry.
 
-| segment | mean pLDDT | Calpha neighbours within 10 A | charged residues |
-|---|---|---|---|
-| 338-358 | 94 | 18.3 | 1 |
-| 386-406 | 97 | 20.0 | 0 |
+**A negative control worth reporting.** We first attempted to support this reassignment with
+properties of the segments themselves, and both attempts failed. Burial does not
+discriminate: the mean number of Calpha neighbours within 10 A is 18.3 and 20.0 for the two
+TMCO6 segments, but experimentally supported transmembrane helices of AQP1 (20.8-23.6),
+GLUT1 (20.3-25.6) and ABCG2 (16.0-21.2) are equally or more buried in their own AlphaFold
+models, because in a multi-pass membrane protein the transmembrane helices pack against one
+another. The hydrophobicity of the solvent-exposed face is better but still unreliable: the
+exposed residues of the annotated segments are more hydrophobic than the rest of the chain by
++3.8 Kyte-Doolittle units in GLUT1 and +4.4 in ABCG2, as expected for a lipid-facing surface,
+but by −0.3 in AQP1, which is almost entirely membrane-embedded so that any relative exposure
+threshold misfires. The TMCO6 segments give −0.4, indistinguishable from AQP1.
 
-A genuine transmembrane helix of a monomeric protein is solvent-exposed in such a model.
-These two are packed against the remainder of the repeat stack. This is the expected failure
-mode of sequence-based transmembrane predictors applied to buried hydrophobic helices of
-alpha-solenoids, and both features carry only computational evidence (ECO:0000255), with the
-subcellular location inferred from them (ECO:0000305).
+We therefore do not rest the reassignment on either measure. The evidence is the fold
+assignment itself, together with the entry's own structural cross-references, and we report
+the two failed discriminators so that others do not repeat them.
 
 The UniProt entry is internally inconsistent on this point. Alongside the membrane
 annotation it carries Gene3D 1.25.10.10 (ARM-like), InterPro IPR011989 (ARM-like), IPR016024
@@ -359,20 +368,16 @@ most informative piece of evidence is an experimental observation published by o
 
 ## References
 
-To be completed before submission. Key citations:
-
-- Golisz A, Sikorski PJ, Kruszka K, Kufel J. *Arabidopsis thaliana* LSm proteins function in
-  mRNA splicing and degradation. Nucleic Acids Res. 2013. PMID 23620288.
-- Montemayor EJ, Didychuk AL, Yake AD, et al. Architecture of the U6 snRNP reveals specific
-  recognition of 3'-end processed U6 snRNA. Nat Commun. 2018. PMC5931518.
-- Huttlin EL, et al. Dual proteome-scale networks reveal cell-specific remodeling of the human
-  interactome (BioPlex 3.0). Cell. 2021.
-- Dempster JM, et al. Chronos: a cell population dynamics model of CRISPR experiments.
-- Jumper J, et al. Highly accurate protein structure prediction with AlphaFold. Nature. 2021.
-- Abramson J, et al. Accurate structure prediction of biomolecular interactions with
-  AlphaFold 3. Nature. 2024.
-- van Kempen M, et al. Fast and accurate protein structure search with Foldseek. Nat
-  Biotechnol. 2024.
-- Ovine TMCO6 loss-of-function and motor neuron disease. Genomics. 2023. PMID 37488055.
-- TMCO6 and neutrophil extracellular trap DNA in hepatocellular carcinoma. Cancer Res. 2024.
-  PMID 38381538.
+1. Golisz A, Sikorski PJ, Kruszka K, Kufel J. Arabidopsis thaliana LSM proteins function in mRNA splicing and degradation. *Nucleic acids research* 2013;41:6232-6249. doi:10.1093/nar/gkt296. PMID:23620288.
+2. Montemayor EJ, Didychuk AL, Yake AD, Sidhu GK, Brow DA, Butcher SE. Architecture of the U6 snRNP reveals specific recognition of 3'-end processed U6 snRNA. *Nature communications* 2018;9:1749. doi:10.1038/s41467-018-04145-4. PMID:29717126.
+3. Montemayor EJ, Virta JM, Hayes SM, Nomura Y, Brow DA, Butcher SE. Molecular basis for the distinct cellular functions of the Lsm1-7 and Lsm2-8 complexes. *RNA (New York, N.Y.)* 2020;26:1400-1413. doi:10.1261/rna.075879.120. PMID:32518066.
+4. Huttlin EL, Bruckner RJ, Navarrete-Perea J, Cannon JR, Baltier K, Gebreab F, et al. Dual proteome-scale networks reveal cell-specific remodeling of the human interactome. *Cell* 2021;184:3022-3040.e28. doi:10.1016/j.cell.2021.04.011. PMID:33961781.
+5. Dempster JM, Boyle I, Vazquez F, Root DE, Boehm JS, Hahn WC, et al. Chronos: a cell population dynamics model of CRISPR experiments that improves inference of gene fitness effects. *Genome biology* 2021;22:343. doi:10.1186/s13059-021-02540-7. PMID:34930405.
+6. Jumper J, Evans R, Pritzel A, Green T, Figurnov M, Ronneberger O, et al. Highly accurate protein structure prediction with AlphaFold. *Nature* 2021;596:583-589. doi:10.1038/s41586-021-03819-2. PMID:34265844.
+7. Abramson J, Adler J, Dunger J, Evans R, Green T, Pritzel A, et al. Accurate structure prediction of biomolecular interactions with AlphaFold 3. *Nature* 2024;630:493-500. doi:10.1038/s41586-024-07487-w. PMID:38718835.
+8. van Kempen M, Kim SS, Tumescheit C, Mirdita M, Lee J, Gilchrist CLM, et al. Fast and accurate protein structure search with Foldseek. *Nature biotechnology* 2024;42:243-246. doi:10.1038/s41587-023-01773-0. PMID:37156916.
+9. UniProt Consortium. UniProt: the Universal Protein Knowledgebase in 2025. *Nucleic acids research* 2025;53:D609-D617. doi:10.1093/nar/gkae1010. PMID:39552041.
+10. Sheils T, Mathias SL, Siramshetty VB, Bocci G, Bologa CG, Yang JJ, et al. How to Illuminate the Druggable Genome Using Pharos. *Current protocols in bioinformatics* 2020;69:e92. doi:10.1002/cpbi.92. PMID:31898878.
+11. Saitou N, Nei M. The neighbor-joining method: a new method for reconstructing phylogenetic trees. *Molecular biology and evolution* 1987;4:406-425. doi:10.1093/oxfordjournals.molbev.a040454. PMID:3447015.
+12. Letko A, Brülisauer F, Häfliger IM, Corr E, Scholes S, Drögemüller C. Loss-of-function variant in the ovine TMCO6 gene in North Country Cheviot sheep with motor neuron disease. *Genomics* 2023;115:110689. doi:10.1016/j.ygeno.2023.110689. PMID:37488055.
+13. Song M, Zhang C, Cheng S, Ouyang D, Ping Y, Yang J, et al. DNA of Neutrophil Extracellular Traps Binds TMCO6 to Impair CD8+ T-cell Immunity in Hepatocellular Carcinoma. *Cancer research* 2024;84:1613-1629. doi:10.1158/0008-5472.can-23-2986. PMID:38381538.
