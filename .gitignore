@@ -1,7 +1,21 @@
 target/
+*.zip
+
+# Чужие сырые выгрузки из баз — качаются заново, см. data/README.md
 data/*.gz
-data/*.zip
-af3/results/*.zip
+data/BioPlex_*.tsv
+data/subcellular_location.tsv
+data/pharos_tdark.json
+data/tmco6/foldseek_tmco6.json
+data/tmco6/refprot_euk.tsv
+data/tmco6/fam_*.tsv
+data/tmco6/ref_*.tsv
+data/tmco6/orth_*.fa
+data/tmco6/golisz.json
+data/phylo/kpna_*.fa
+data/phylo/phylo_set.fa
+
+# AlphaFold Server: в репозитории только лучшая модель и её сводка
 af3/results/*/msas/
 af3/results/*/templates/
 af3/results/*/*full_data*

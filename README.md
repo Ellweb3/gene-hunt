@@ -37,3 +37,23 @@ curl -sL https://ndownloader.figshare.com/files/67214582 -o $S/gene_effect.csv
 curl -s https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2pubmed.gz -o $S/gene2pubmed.gz
 cargo run --release -- $S/gene_effect.csv $S/gene2pubmed.gz
 ```
+
+Остальные загрузки — в [data/README.md](data/README.md). Сырые выгрузки из чужих баз
+(BioPlex, HPA, UniProt, Foldseek, Pharos) здесь не хранятся: у каждой свои условия
+использования, качайте по командам оттуда.
+
+## Источники и условия использования
+
+Работа опирается на открытые данные: DepMap (Broad Institute), BioPlex 3.0, Human Protein
+Atlas, UniProt, InterPro, Pfam, Pharos/IDG, NCBI Gene, Cellosaurus, Ensembl, Foldseek,
+AlphaFold DB и Europe PMC. Условия у каждого источника свои, смотрите на их сайтах.
+
+**Модели в `af3/results/` получены на AlphaFold Server и распространяются по его условиям:
+только некоммерческое использование.** Полный текст лежит рядом с каждой моделью
+(`af3/results/*/terms_of_use.md`) и опубликован на
+[alphafoldserver.com/output-terms](https://alphafoldserver.com/output-terms). В репозитории
+хранятся только лучшие модели (ранг 0) и их сводки; остальные файлы заданий воспроизводятся
+повторным запуском `af3/alphafold_server_jobs.json`.
+
+Код в `src/` написан для этой работы, берите свободно. Выводы — исследовательские гипотезы,
+экспериментально они не проверены.
