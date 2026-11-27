@@ -4,7 +4,7 @@
 
 Independent researcher, Punta del Este, Uruguay.
 
-Correspondence: [EMAIL]  ·  Code and data: https://github.com/Ellweb3/gene-hunt
+Correspondence: fluttereldar@gmail.com  ·  Code and data: https://github.com/Ellweb3/gene-hunt
 
 ---
 
