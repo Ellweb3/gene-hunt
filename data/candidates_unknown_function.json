@@ -1,0 +1,2650 @@
+[
+ {
+  "sym": "MRPS11",
+  "uniprot": "P82912",
+  "annot": "4.0",
+  "name": "28S ribosomal protein S11, mitochondrial",
+  "epmc": 21,
+  "dm_mean": -0.623,
+  "dm_frac": 0.565,
+  "bioplex": 80,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MARS2",
+    0.76
+   ],
+   [
+    "YARS2",
+    0.75
+   ],
+   [
+    "MRPL57",
+    0.74
+   ],
+   [
+    "MRPS23",
+    0.73
+   ],
+   [
+    "MRPL33",
+    0.73
+   ]
+  ],
+  "titles": [
+   "Neurofunctional gradients and molecular signatures underlying problematic smartp (2026)",
+   "Identification and experimental validation of biomarkers associated with the end (2025)"
+  ]
+ },
+ {
+  "sym": "MRPL57",
+  "uniprot": "Q9BQC6",
+  "annot": "4.0",
+  "name": "Ribosomal protein 63, mitochondrial",
+  "epmc": 1,
+  "dm_mean": -0.81,
+  "dm_frac": 0.696,
+  "bioplex": 0,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MARS2",
+    0.76
+   ],
+   [
+    "MRPS11",
+    0.74
+   ],
+   [
+    "MRPL17",
+    0.73
+   ],
+   [
+    "YARS2",
+    0.72
+   ],
+   [
+    "MRPL33",
+    0.71
+   ]
+  ],
+  "titles": [
+   "Characterization of the &lt;i&gt;pars tuberalis&lt;/i&gt; and hypothalamus trans (2023)"
+  ]
+ },
+ {
+  "sym": "MRPL20",
+  "uniprot": "Q9BYC9",
+  "annot": "4.0",
+  "name": "39S ribosomal protein L20, mitochondrial",
+  "epmc": 7,
+  "dm_mean": -0.283,
+  "dm_frac": 0.248,
+  "bioplex": 55,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "LARS2",
+    0.76
+   ],
+   [
+    "HSD17B10",
+    0.74
+   ],
+   [
+    "EARS2",
+    0.73
+   ],
+   [
+    "MRPS6",
+    0.71
+   ],
+   [
+    "MRPS25",
+    0.71
+   ]
+  ],
+  "titles": [
+   "Multi-omics Mendelian randomization analysis identifies SPATA20 as a cross-omic  (2026)",
+   "The lncRNA MRPL20-AS1 is associated with severe OSAS and downregulated upon hypo (2022)"
+  ]
+ },
+ {
+  "sym": "MRPL33",
+  "uniprot": "O75394",
+  "annot": "4.0",
+  "name": "39S ribosomal protein L33, mitochondrial",
+  "epmc": 25,
+  "dm_mean": -0.798,
+  "dm_frac": 0.706,
+  "bioplex": 30,
+  "hpa": "",
+  "hpa_rel": "",
+  "coess": [
+   [
+    "MARS2",
+    0.74
+   ],
+   [
+    "MRPS11",
+    0.73
+   ],
+   [
+    "MRPL57",
+    0.71
+   ],
+   [
+    "LRPPRC",
+    0.7
+   ],
+   [
+    "MRPS23",
+    0.69
+   ]
+  ],
+  "titles": [
+   "RNA-binding motif protein RBM39 enhances the proliferation of gastric cancer cel (2025)",
+   "Identification of hub genes in congenital hypothyroidism and construction of the (2025)"
+  ]
+ },
+ {
+  "sym": "MRPL17",
+  "uniprot": "Q9NRX2",
+  "annot": "5.0",
+  "name": "39S ribosomal protein L17, mitochondrial",
+  "epmc": 17,
+  "dm_mean": -0.382,
+  "dm_frac": 0.329,
+  "bioplex": 57,
+  "hpa": "",
+  "hpa_rel": "",
+  "coess": [
+   [
+    "MARS2",
+    0.73
+   ],
+   [
+    "MRPL57",
+    0.73
+   ],
+   [
+    "MRPS11",
+    0.73
+   ],
+   [
+    "MRPS18B",
+    0.7
+   ],
+   [
+    "MRPL40",
+    0.68
+   ]
+  ],
+  "titles": [
+   "MRPL17 is a critical regulator of mitochondrial function and a novel therapeutic (2025)",
+   "Targeting liver cancer stem cells: the prognostic significance of MRPL17 in immu (2024)"
+  ]
+ },
+ {
+  "sym": "MRPS24",
+  "uniprot": "Q96EL2",
+  "annot": "3.0",
+  "name": "28S ribosomal protein S24, mitochondrial",
+  "epmc": 3,
+  "dm_mean": -0.363,
+  "dm_frac": 0.329,
+  "bioplex": 144,
+  "hpa": "",
+  "hpa_rel": "",
+  "coess": [
+   [
+    "MARS2",
+    0.72
+   ],
+   [
+    "HSD17B10",
+    0.71
+   ],
+   [
+    "MRPL43",
+    0.7
+   ],
+   [
+    "MRPS6",
+    0.7
+   ],
+   [
+    "MRPL39",
+    0.7
+   ]
+  ],
+  "titles": [
+   "Mitochondrial ribosomal protein S24 is associated with immunosuppressive microen (2024)",
+   "Identifying Hub Genes and Metabolic Pathways in Collagen VI-Related Dystrophies: (2024)"
+  ]
+ },
+ {
+  "sym": "MRPL21",
+  "uniprot": "Q7Z2W9",
+  "annot": "4.0",
+  "name": "39S ribosomal protein L21, mitochondrial",
+  "epmc": 16,
+  "dm_mean": -0.794,
+  "dm_frac": 0.738,
+  "bioplex": 61,
+  "hpa": "Mitochondria;Nucleoplasm",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "MRPS6",
+    0.72
+   ],
+   [
+    "MARS2",
+    0.72
+   ],
+   [
+    "MRPS16",
+    0.7
+   ],
+   [
+    "MRPS11",
+    0.7
+   ],
+   [
+    "MRPL18",
+    0.69
+   ]
+  ],
+  "titles": [
+   "MRPL21-PARP1 axis promotes cisplatin resistance in head and neck squamous cell c (2025)",
+   "Integrative Analysis of the Role of MRPL21 in Human Pan-Cancer and Its Relations (2026)"
+  ]
+ },
+ {
+  "sym": "MRPS25",
+  "uniprot": "P82663",
+  "annot": "4.0",
+  "name": "28S ribosomal protein S25, mitochondrial",
+  "epmc": 3,
+  "dm_mean": -0.405,
+  "dm_frac": 0.36,
+  "bioplex": 108,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "GFM1",
+    0.72
+   ],
+   [
+    "MRPL20",
+    0.71
+   ],
+   [
+    "LARS2",
+    0.71
+   ],
+   [
+    "HSD17B10",
+    0.7
+   ],
+   [
+    "TFB1M",
+    0.7
+   ]
+  ],
+  "titles": [
+   "Integrated analysis of gene networks and cellular functions identifies novel hea (2025)",
+   "Plasma miR-148b-3p is associated with CKD-related renal dysfunction and carotid  (2026)"
+  ]
+ },
+ {
+  "sym": "MRPL23",
+  "uniprot": "Q16540",
+  "annot": "5.0",
+  "name": "39S ribosomal protein L23, mitochondrial",
+  "epmc": 30,
+  "dm_mean": -0.26,
+  "dm_frac": 0.209,
+  "bioplex": 78,
+  "hpa": "Mitochondria;Nucleoli fibrillar center",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "HSD17B10",
+    0.72
+   ],
+   [
+    "MRPL39",
+    0.7
+   ],
+   [
+    "LARS2",
+    0.7
+   ],
+   [
+    "MRPL46",
+    0.7
+   ],
+   [
+    "MRPS6",
+    0.69
+   ]
+  ],
+  "titles": [
+   "MRPL23 Overexpression Predicts Poor Survival and Is Associated with Mitochondria (2026)",
+   "Identification of candidate biomarker MRPL23 and its prognostic potential in non (2026)"
+  ]
+ },
+ {
+  "sym": "MRPL15",
+  "uniprot": "Q9P015",
+  "annot": "4.0",
+  "name": "39S ribosomal protein L15, mitochondrial",
+  "epmc": 35,
+  "dm_mean": -0.379,
+  "dm_frac": 0.368,
+  "bioplex": 65,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MRPL39",
+    0.72
+   ],
+   [
+    "HSD17B10",
+    0.72
+   ],
+   [
+    "EARS2",
+    0.7
+   ],
+   [
+    "MRPL32",
+    0.69
+   ],
+   [
+    "MARS2",
+    0.69
+   ]
+  ],
+  "titles": [
+   "The oncogenic role of BMAL2 in non-small cell lung cancer: MRPL15-mediated regul (2025)",
+   "MRPL15 as a Key Gene in the Malignant Proliferation of LUAD. (2026)"
+  ]
+ },
+ {
+  "sym": "MRPL46",
+  "uniprot": "Q9H2W6",
+  "annot": "4.0",
+  "name": "39S ribosomal protein L46, mitochondrial",
+  "epmc": 6,
+  "dm_mean": -0.246,
+  "dm_frac": 0.164,
+  "bioplex": 59,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MTG2",
+    0.71
+   ],
+   [
+    "MRPL23",
+    0.7
+   ],
+   [
+    "MRPS24",
+    0.69
+   ],
+   [
+    "HSD17B10",
+    0.69
+   ],
+   [
+    "MARS2",
+    0.68
+   ]
+  ],
+  "titles": [
+   "APOA1BP and natural killer cells as diagnostic and pathophysiological biomarkers (2025)",
+   "Identification of Mitochondrial Dysfunction Genes as Diagnostic Biomarkers for I (2026)"
+  ]
+ },
+ {
+  "sym": "MRPL38",
+  "uniprot": "Q96DV4",
+  "annot": "5.0",
+  "name": "39S ribosomal protein L38, mitochondrial",
+  "epmc": 13,
+  "dm_mean": -0.711,
+  "dm_frac": 0.686,
+  "bioplex": 85,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MARS2",
+    0.69
+   ],
+   [
+    "MRPS23",
+    0.66
+   ],
+   [
+    "MRPL21",
+    0.66
+   ],
+   [
+    "MRPL57",
+    0.66
+   ],
+   [
+    "LRPPRC",
+    0.65
+   ]
+  ],
+  "titles": [
+   "Translation Fidelity and Respiration Deficits in CLPP-Deficient Tissues: Mechani (2023)",
+   "Investigating the mechanisms underlying resistance to chemoterapy and to CRISPR- (2024)"
+  ]
+ },
+ {
+  "sym": "MRPL55",
+  "uniprot": "Q7Z7F7",
+  "annot": "4.0",
+  "name": "39S ribosomal protein L55, mitochondrial",
+  "epmc": 13,
+  "dm_mean": -0.503,
+  "dm_frac": 0.496,
+  "bioplex": 44,
+  "hpa": "",
+  "hpa_rel": "",
+  "coess": [
+   [
+    "HSD17B10",
+    0.69
+   ],
+   [
+    "MTG2",
+    0.69
+   ],
+   [
+    "MRPL39",
+    0.69
+   ],
+   [
+    "MRPL43",
+    0.68
+   ],
+   [
+    "MRPL46",
+    0.67
+   ]
+  ],
+  "titles": [
+   "MRPL55 promotes BC progression as a prognostic biomarker by modulating lipogenes (2026)",
+   "Exploratory baseline mucosal transcriptomics and vedolizumab response in ulcerat (2026)"
+  ]
+ },
+ {
+  "sym": "MRPS17",
+  "uniprot": "Q9Y2R5",
+  "annot": "4.0",
+  "name": "28S ribosomal protein S17, mitochondrial",
+  "epmc": 13,
+  "dm_mean": -0.125,
+  "dm_frac": 0.077,
+  "bioplex": 96,
+  "hpa": "",
+  "hpa_rel": "",
+  "coess": [
+   [
+    "NARS2",
+    0.68
+   ],
+   [
+    "LARS2",
+    0.67
+   ],
+   [
+    "MRPS33",
+    0.66
+   ],
+   [
+    "GFM1",
+    0.65
+   ],
+   [
+    "MRPL20",
+    0.64
+   ]
+  ],
+  "titles": [
+   "TET1-mediated DNA demethylation and transcription activation of MRPS17 induces l (2026)",
+   "Mitochondrial Ribosomal Protein S17 Silencing Inhibits Proliferation and Invasiv (2025)"
+  ]
+ },
+ {
+  "sym": "MRPL53",
+  "uniprot": "Q96EL3",
+  "annot": "5.0",
+  "name": "39S ribosomal protein L53, mitochondrial",
+  "epmc": 13,
+  "dm_mean": -0.576,
+  "dm_frac": 0.551,
+  "bioplex": 64,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MARS2",
+    0.68
+   ],
+   [
+    "MRPL57",
+    0.67
+   ],
+   [
+    "MRPS11",
+    0.64
+   ],
+   [
+    "MRPL33",
+    0.64
+   ],
+   [
+    "MRPL17",
+    0.63
+   ]
+  ],
+  "titles": [
+   "Identification of AICD-associated transcriptomic markers in major depressive dis (2026)",
+   "Differentially Methylated Gene Expression in Professional Fighters with Repetiti (2026)"
+  ]
+ },
+ {
+  "sym": "MRPL16",
+  "uniprot": "Q9NX20",
+  "annot": "4.0",
+  "name": "39S ribosomal protein L16, mitochondrial",
+  "epmc": 10,
+  "dm_mean": -0.451,
+  "dm_frac": 0.426,
+  "bioplex": 64,
+  "hpa": "",
+  "hpa_rel": "",
+  "coess": [
+   [
+    "MRPL21",
+    0.68
+   ],
+   [
+    "MRPL18",
+    0.68
+   ],
+   [
+    "MRPL57",
+    0.67
+   ],
+   [
+    "MARS2",
+    0.66
+   ],
+   [
+    "MRPL15",
+    0.66
+   ]
+  ],
+  "titles": [
+   "Retraction notice to \"Construction of novel 10 signatures in diabetic retinopath (2026)",
+   "Construction of novel 10 signatures in diabetic retinopathy construction of mode (2025)"
+  ]
+ },
+ {
+  "sym": "MRPS14",
+  "uniprot": "O60783",
+  "annot": "5.0",
+  "name": "28S ribosomal protein S14, mitochondrial",
+  "epmc": 4,
+  "dm_mean": -0.55,
+  "dm_frac": 0.543,
+  "bioplex": 44,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MRPS6",
+    0.67
+   ],
+   [
+    "MRPL21",
+    0.66
+   ],
+   [
+    "MRPL18",
+    0.65
+   ],
+   [
+    "MRPS11",
+    0.65
+   ],
+   [
+    "MARS2",
+    0.65
+   ]
+  ],
+  "titles": [
+   "Compound Heterozygous MRPS14 Variants Associated With Leigh Syndrome. (2025)",
+   "Construction and differential analysis of testicular atlas between 10-week-old a (2025)"
+  ]
+ },
+ {
+  "sym": "MRPL2",
+  "uniprot": "Q5T653",
+  "annot": "4.0",
+  "name": "39S ribosomal protein L2, mitochondrial",
+  "epmc": 14,
+  "dm_mean": -0.35,
+  "dm_frac": 0.271,
+  "bioplex": 136,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MRPS6",
+    0.66
+   ],
+   [
+    "HSD17B10",
+    0.63
+   ],
+   [
+    "LARS2",
+    0.62
+   ],
+   [
+    "FARS2",
+    0.61
+   ],
+   [
+    "MRPL18",
+    0.61
+   ]
+  ],
+  "titles": [
+   "Lometrexol targets MRPL2 to suppress NSCLC via dual regulation of mitochondrial  (2026)",
+   "Adolescent multi-omics and Mendelian randomization reveal transdiagnostic molecu (2026)"
+  ]
+ },
+ {
+  "sym": "MRPL22",
+  "uniprot": "Q9NWU5",
+  "annot": "5.0",
+  "name": "39S ribosomal protein L22, mitochondrial",
+  "epmc": 16,
+  "dm_mean": -0.216,
+  "dm_frac": 0.143,
+  "bioplex": 35,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "GFM1",
+    0.65
+   ],
+   [
+    "MRPS25",
+    0.62
+   ],
+   [
+    "MRPL20",
+    0.61
+   ],
+   [
+    "LARS2",
+    0.61
+   ],
+   [
+    "NARS2",
+    0.6
+   ]
+  ],
+  "titles": [
+   "Study and validation on mitochondrial and immune-related hub genes in gestationa (2025)",
+   "Integrating Proteomics and Predictive Model: Elucidating the Role of Aminated Na (2026)"
+  ]
+ },
+ {
+  "sym": "MRPL34",
+  "uniprot": "Q9BQ48",
+  "annot": "3.0",
+  "name": "39S ribosomal protein L34, mitochondrial",
+  "epmc": 7,
+  "dm_mean": -0.717,
+  "dm_frac": 0.748,
+  "bioplex": 28,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MRPS24",
+    0.64
+   ],
+   [
+    "MTG2",
+    0.63
+   ],
+   [
+    "MARS2",
+    0.62
+   ],
+   [
+    "MRPL46",
+    0.61
+   ],
+   [
+    "MRPL43",
+    0.61
+   ]
+  ],
+  "titles": [
+   "Integrative analysis of the roles and prognostic value of RNA-binding proteins i (2026)",
+   "Development and validation of an immune-related diagnostic signature for breast  (2026)"
+  ]
+ },
+ {
+  "sym": "MRPS9",
+  "uniprot": "P82933",
+  "annot": "4.0",
+  "name": "28S ribosomal protein S9, mitochondrial",
+  "epmc": 14,
+  "dm_mean": -0.337,
+  "dm_frac": 0.279,
+  "bioplex": 117,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MARS2",
+    0.61
+   ],
+   [
+    "MRPL43",
+    0.59
+   ],
+   [
+    "HARS2",
+    0.59
+   ],
+   [
+    "MRPL57",
+    0.59
+   ],
+   [
+    "MRPL15",
+    0.59
+   ]
+  ],
+  "titles": [
+   "MRPS9-Mediated Regulation of the PI3K/Akt/mTOR Pathway Inhibits Neuron Apoptosis (2024)",
+   "Regulatory effect of baicalein on intestinal ribosome biogenesis in mice with as (2026)"
+  ]
+ },
+ {
+  "sym": "MRPS31",
+  "uniprot": "Q92665",
+  "annot": "4.0",
+  "name": "28S ribosomal protein S31, mitochondrial",
+  "epmc": 15,
+  "dm_mean": -0.37,
+  "dm_frac": 0.313,
+  "bioplex": 85,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MRPS11",
+    0.61
+   ],
+   [
+    "MRPL57",
+    0.59
+   ],
+   [
+    "LRPPRC",
+    0.57
+   ],
+   [
+    "MRPS18B",
+    0.56
+   ],
+   [
+    "NDUFB6",
+    0.56
+   ]
+  ],
+  "titles": [
+   "MRPS31 loss is a key driver of mitochondrial deregulation and hepatocellular car (2021)",
+   "Onvansertib and Navitoclax Combination as a New Therapeutic Option for Mucinous  (2025)"
+  ]
+ },
+ {
+  "sym": "MRPS35",
+  "uniprot": "P82673",
+  "annot": "4.0",
+  "name": "28S ribosomal protein S35, mitochondrial",
+  "epmc": 13,
+  "dm_mean": -0.363,
+  "dm_frac": 0.31,
+  "bioplex": 79,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "LARS2",
+    0.61
+   ],
+   [
+    "HSD17B10",
+    0.6
+   ],
+   [
+    "NARS2",
+    0.58
+   ],
+   [
+    "MRPL46",
+    0.57
+   ],
+   [
+    "TFB1M",
+    0.57
+   ]
+  ],
+  "titles": [
+   "Novel immunodominant neoepitope in a KPC mouse model of pancreatic cancer allowi (2025)",
+   "Proteomics reveals the potential mechanism of Mrps35 controlling Listeria monocy (2021)"
+  ]
+ },
+ {
+  "sym": "MRPS26",
+  "uniprot": "Q9BYN8",
+  "annot": "3.0",
+  "name": "28S ribosomal protein S26, mitochondrial",
+  "epmc": 4,
+  "dm_mean": -0.332,
+  "dm_frac": 0.263,
+  "bioplex": 98,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MRPS6",
+    0.61
+   ],
+   [
+    "MRPS18B",
+    0.6
+   ],
+   [
+    "MRPS24",
+    0.59
+   ],
+   [
+    "MRPS11",
+    0.59
+   ],
+   [
+    "MRPS16",
+    0.59
+   ]
+  ],
+  "titles": [
+   "Identification of mitochondria-related biomarkers in childhood allergic asthma. (2024)",
+   "The value of RPS15 and MRPS27 in ischemic stroke. (2023)"
+  ]
+ },
+ {
+  "sym": "MRPL48",
+  "uniprot": "Q96GC5",
+  "annot": "5.0",
+  "name": "39S ribosomal protein L48, mitochondrial",
+  "epmc": 10,
+  "dm_mean": -0.119,
+  "dm_frac": 0.078,
+  "bioplex": 44,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MRPL23",
+    0.61
+   ],
+   [
+    "HSD17B10",
+    0.61
+   ],
+   [
+    "MRPL15",
+    0.6
+   ],
+   [
+    "MRPL39",
+    0.6
+   ],
+   [
+    "MRPL16",
+    0.59
+   ]
+  ],
+  "titles": [
+   "MRPL48 is a novel prognostic and predictive biomarker of hepatocellular carcinom (2023)",
+   "Sex-related differences and associated transcriptional signatures in the brain v (2025)"
+  ]
+ },
+ {
+  "sym": "MRPS10",
+  "uniprot": "P82664",
+  "annot": "3.0",
+  "name": "28S ribosomal protein S10, mitochondrial",
+  "epmc": 14,
+  "dm_mean": -0.468,
+  "dm_frac": 0.448,
+  "bioplex": 65,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "MRPL15",
+    0.61
+   ],
+   [
+    "EARS2",
+    0.61
+   ],
+   [
+    "MRPS18C",
+    0.6
+   ],
+   [
+    "HSD17B10",
+    0.6
+   ],
+   [
+    "MRPL46",
+    0.59
+   ]
+  ],
+  "titles": [
+   "High expression of Mrps10 in diabetic retinopathy: A bioinformatics analysis bas (2025)",
+   "Regulation of reactive oxygen species and the role of mitochondrial apoptotic-re (2025)"
+  ]
+ },
+ {
+  "sym": "MRPL37",
+  "uniprot": "Q9BZE1",
+  "annot": "4.0",
+  "name": "39S ribosomal protein L37, mitochondrial",
+  "epmc": 16,
+  "dm_mean": -0.261,
+  "dm_frac": 0.138,
+  "bioplex": 67,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MRPL46",
+    0.6
+   ],
+   [
+    "MRPL18",
+    0.6
+   ],
+   [
+    "MRPL39",
+    0.59
+   ],
+   [
+    "MRPL23",
+    0.58
+   ],
+   [
+    "MRPL15",
+    0.58
+   ]
+  ],
+  "titles": [
+   "Targeting MRPL37 disrupts the pro-tumorigenic mitochondrial cascade in bladder c (2026)",
+   "MRPL37 promotes hepatocellular carcinoma progression through modulating mitochon (2025)"
+  ]
+ },
+ {
+  "sym": "TMCO6",
+  "uniprot": "Q96DC7",
+  "annot": "3.0",
+  "name": "Transmembrane and coiled-coil domain-containing protein 6",
+  "epmc": 7,
+  "dm_mean": -0.115,
+  "dm_frac": 0.07,
+  "bioplex": 9,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "ZNF511",
+    0.6
+   ],
+   [
+    "DSCC1",
+    0.24
+   ],
+   [
+    "FAM193B",
+    0.2
+   ],
+   [
+    "RNF8",
+    0.2
+   ],
+   [
+    "PRRC1",
+    0.2
+   ]
+  ],
+  "titles": [
+   "DNA of Neutrophil Extracellular Traps Binds TMCO6 to Impair CD8+ T-cell Immunity (2024)",
+   "Loss-of-function variant in the ovine TMCO6 gene in North Country Cheviot sheep  (2023)"
+  ]
+ },
+ {
+  "sym": "MRPL35",
+  "uniprot": "Q9NZE8",
+  "annot": "5.0",
+  "name": "39S ribosomal protein L35, mitochondrial",
+  "epmc": 19,
+  "dm_mean": -0.537,
+  "dm_frac": 0.543,
+  "bioplex": 68,
+  "hpa": "",
+  "hpa_rel": "",
+  "coess": [
+   [
+    "MRPL53",
+    0.59
+   ],
+   [
+    "MARS2",
+    0.59
+   ],
+   [
+    "MRPL21",
+    0.59
+   ],
+   [
+    "MRPL41",
+    0.58
+   ],
+   [
+    "MRPL39",
+    0.58
+   ]
+  ],
+  "titles": [
+   "MRPL35 Suppresses Autophagy-Mediated Ferroptosis in Hepatocellular Carcinoma via (2026)",
+   "MRPL35 Attenuates Neonatal Parenteral Nutrition-Associated Cholestasis by Modula (2025)"
+  ]
+ },
+ {
+  "sym": "MRPL51",
+  "uniprot": "Q4U2R6",
+  "annot": "4.0",
+  "name": "39S ribosomal protein L51, mitochondrial",
+  "epmc": 17,
+  "dm_mean": -0.245,
+  "dm_frac": 0.161,
+  "bioplex": 97,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MRPL39",
+    0.58
+   ],
+   [
+    "MRPL23",
+    0.58
+   ],
+   [
+    "MRPS6",
+    0.57
+   ],
+   [
+    "MRPS16",
+    0.56
+   ],
+   [
+    "MRPL46",
+    0.56
+   ]
+  ],
+  "titles": [
+   "&lt;i&gt;MRPL51&lt;/i&gt; expression is associated with poor prognosis and regul (2025)",
+   "MRPL51 is a downstream target of FOXM1 in promoting the malignant behaviors of l (2023)"
+  ]
+ },
+ {
+  "sym": "MRPS28",
+  "uniprot": "Q9Y2Q9",
+  "annot": "5.0",
+  "name": "28S ribosomal protein S28, mitochondrial",
+  "epmc": 16,
+  "dm_mean": -0.297,
+  "dm_frac": 0.179,
+  "bioplex": 26,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MRPS18B",
+    0.57
+   ],
+   [
+    "MRPS11",
+    0.57
+   ],
+   [
+    "MRPL13",
+    0.57
+   ],
+   [
+    "LRPPRC",
+    0.56
+   ],
+   [
+    "MRPL17",
+    0.55
+   ]
+  ],
+  "titles": [
+   "MRPS28 serves as a biomarker of diagnostic, prognostic, and immune modulation in (2026)",
+   "Role of LncRNA MRPS28 in Secondary Hair Follicle Development of Cashmere Goats. (2025)"
+  ]
+ },
+ {
+  "sym": "MRPL24",
+  "uniprot": "Q96A35",
+  "annot": "4.0",
+  "name": "39S ribosomal protein L24, mitochondrial",
+  "epmc": 11,
+  "dm_mean": -0.337,
+  "dm_frac": 0.248,
+  "bioplex": 55,
+  "hpa": "",
+  "hpa_rel": "",
+  "coess": [
+   [
+    "DAP3",
+    0.56
+   ],
+   [
+    "MRPL39",
+    0.55
+   ],
+   [
+    "MRPL15",
+    0.54
+   ],
+   [
+    "DARS2",
+    0.53
+   ],
+   [
+    "MRPS21",
+    0.53
+   ]
+  ],
+  "titles": [
+   "MRPL24 drives breast cancer metastasis and stemness by targeting c-MYC, BRD4, an (2025)",
+   "Proteomic Analysis of Mixed Cell Membrane Extracts From Triple-Negative Breast C (2026)"
+  ]
+ },
+ {
+  "sym": "MRPL54",
+  "uniprot": "Q6P161",
+  "annot": "3.0",
+  "name": "39S ribosomal protein L54, mitochondrial",
+  "epmc": 8,
+  "dm_mean": -0.296,
+  "dm_frac": 0.187,
+  "bioplex": 11,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "MRPL39",
+    0.55
+   ],
+   [
+    "MRPL21",
+    0.55
+   ],
+   [
+    "MRPS6",
+    0.55
+   ],
+   [
+    "MRPL23",
+    0.55
+   ],
+   [
+    "MRPL18",
+    0.54
+   ]
+  ],
+  "titles": [
+   "Reduced levels of mitochondrial ribosomal protein MRPL54 does not alter Apc rela (2026)",
+   "Reducing mitochondrial ribosomal gene expression does not alter metabolic health (2023)"
+  ]
+ },
+ {
+  "sym": "MRPS21",
+  "uniprot": "P82921",
+  "annot": "4.0",
+  "name": "28S ribosomal protein S21, mitochondrial",
+  "epmc": 7,
+  "dm_mean": -0.946,
+  "dm_frac": 0.903,
+  "bioplex": 37,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "DAP3",
+    0.54
+   ],
+   [
+    "MRPL24",
+    0.53
+   ],
+   [
+    "MRPL39",
+    0.53
+   ],
+   [
+    "MRPS14",
+    0.52
+   ],
+   [
+    "MRPL32",
+    0.52
+   ]
+  ],
+  "titles": [
+   "Mrps15/Mrps21 induced by Zhx1 protects mice from hypertensive heart disease by r (2026)",
+   "Potential Shared Immunometabolic Signatures Between Familial Hypercholesterolemi (2026)"
+  ]
+ },
+ {
+  "sym": "MRPS15",
+  "uniprot": "P82914",
+  "annot": "4.0",
+  "name": "28S ribosomal protein S15, mitochondrial",
+  "epmc": 10,
+  "dm_mean": -0.184,
+  "dm_frac": 0.075,
+  "bioplex": 64,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MRPL20",
+    0.54
+   ],
+   [
+    "MRPL22",
+    0.51
+   ],
+   [
+    "NARS2",
+    0.51
+   ],
+   [
+    "MRPS27",
+    0.5
+   ],
+   [
+    "DAP3",
+    0.5
+   ]
+  ],
+  "titles": [
+   "Mrps15/Mrps21 induced by Zhx1 protects mice from hypertensive heart disease by r (2026)",
+   "A mitochondrial function-based prognostic model for hepatocellular carcinoma unc (2026)"
+  ]
+ },
+ {
+  "sym": "KTI12",
+  "uniprot": "Q96EK9",
+  "annot": "2.0",
+  "name": "Protein KTI12 homolog",
+  "epmc": 22,
+  "dm_mean": -0.87,
+  "dm_frac": 0.776,
+  "bioplex": 2,
+  "hpa": "Cytoplasmic bodies;Nuclear speckles",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "ELP1",
+    0.54
+   ],
+   [
+    "ELP5",
+    0.53
+   ],
+   [
+    "CTU2",
+    0.5
+   ],
+   [
+    "NR2C2AP",
+    0.46
+   ],
+   [
+    "DPH3",
+    0.41
+   ]
+  ],
+  "titles": [
+   "tRNA binding to Kti12 is crucial for wobble uridine modification by Elongator. (2025)",
+   "ZmDRL1 regulates maize leaf angle via phytohormone signaling. (2026)"
+  ]
+ },
+ {
+  "sym": "MRPL50",
+  "uniprot": "Q8N5N7",
+  "annot": "3.0",
+  "name": "39S ribosomal protein L50, mitochondrial",
+  "epmc": 5,
+  "dm_mean": -0.392,
+  "dm_frac": 0.304,
+  "bioplex": 82,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "MRPL32",
+    0.52
+   ],
+   [
+    "NDUFA8",
+    0.5
+   ],
+   [
+    "MRPL10",
+    0.5
+   ],
+   [
+    "MRPS11",
+    0.49
+   ],
+   [
+    "NDUFB10",
+    0.48
+   ]
+  ],
+  "titles": [
+   "Mrpl50 integrates glucolipotoxicity with hypoxia-inducible factor 1 alpha signal (2026)",
+   "Comprehensive Insights into Perrault Syndrome: Genetic Diversity and Clinical Im (2026)"
+  ]
+ },
+ {
+  "sym": "C19orf25",
+  "uniprot": "Q9UFG5",
+  "annot": "5.0",
+  "name": "UPF0449 protein C19orf25",
+  "epmc": 3,
+  "dm_mean": -0.132,
+  "dm_frac": 0.118,
+  "bioplex": 45,
+  "hpa": "Intermediate filaments",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "BNIP1",
+    0.52
+   ],
+   [
+    "NBAS",
+    0.47
+   ],
+   [
+    "ZW10",
+    0.36
+   ],
+   [
+    "STX18",
+    0.36
+   ],
+   [
+    "TRAPPC2L",
+    0.31
+   ]
+  ],
+  "titles": [
+   "Classification and functional characterization of regulators of intracellular ST (2024)",
+   "The significance of urine extracellular vesicle DNA methylation detection in the (2026)"
+  ]
+ },
+ {
+  "sym": "TM2D2",
+  "uniprot": "Q9BX73",
+  "annot": "3.0",
+  "name": "TM2 domain-containing protein 2",
+  "epmc": 1,
+  "dm_mean": -0.125,
+  "dm_frac": 0.068,
+  "bioplex": 12,
+  "hpa": "Nucleoplasm;Plasma membrane;Vesicles",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "TM2D3",
+    0.51
+   ],
+   [
+    "TM2D1",
+    0.5
+   ],
+   [
+    "AUP1",
+    0.28
+   ],
+   [
+    "EXT1",
+    0.24
+   ],
+   [
+    "CRKL",
+    0.23
+   ]
+  ],
+  "titles": [
+   "Evolution of an adaptive, inducible defensive trait in a model crustacean. (2026)"
+  ]
+ },
+ {
+  "sym": "SNRNP35",
+  "uniprot": "Q16560",
+  "annot": "5.0",
+  "name": "U11/U12 small nuclear ribonucleoprotein 35 kDa protein",
+  "epmc": 4,
+  "dm_mean": -1.497,
+  "dm_frac": 0.98,
+  "bioplex": 14,
+  "hpa": "Nucleoli",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "U2AF1",
+    0.51
+   ],
+   [
+    "PSMA4",
+    0.51
+   ],
+   [
+    "LCE1B",
+    0.5
+   ],
+   [
+    "CENPN",
+    0.48
+   ],
+   [
+    "ISCU",
+    0.47
+   ]
+  ],
+  "titles": [
+   "A cuproptosis-related gene signature and the protective role of CDKN1A in sepsis (2026)",
+   "Structural basis of 5' splice site recognition by the minor spliceosome. (2025)"
+  ]
+ },
+ {
+  "sym": "C17orf58",
+  "uniprot": "Q2M2W7",
+  "annot": "3.0",
+  "name": "UPF0450 protein C17orf58",
+  "epmc": 1,
+  "dm_mean": -0.317,
+  "dm_frac": 0.187,
+  "bioplex": 0,
+  "hpa": "Cytosol;Plasma membrane",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "LIMD2",
+    0.48
+   ],
+   [
+    "LGALS3BP",
+    0.43
+   ],
+   [
+    "BCAS3",
+    0.42
+   ],
+   [
+    "UBE2O",
+    0.41
+   ],
+   [
+    "ATP5MC1",
+    0.41
+   ]
+  ],
+  "titles": [
+   "DSM-5 cannabis use disorder: a phenotypic and genomic perspective. (2014)"
+  ]
+ },
+ {
+  "sym": "SMR3B",
+  "uniprot": "P02814",
+  "annot": "5.0",
+  "name": "Submaxillary gland androgen-regulated protein 3B",
+  "epmc": 19,
+  "dm_mean": -0.325,
+  "dm_frac": 0.184,
+  "bioplex": 6,
+  "hpa": "",
+  "hpa_rel": "",
+  "coess": [
+   [
+    "LCE1B",
+    0.46
+   ],
+   [
+    "PRSS50",
+    0.42
+   ],
+   [
+    "GPRIN3",
+    0.41
+   ],
+   [
+    "AGAP6",
+    0.4
+   ],
+   [
+    "OR51I2",
+    0.39
+   ]
+  ],
+  "titles": [
+   "Integrated single-cell and bulk transcriptomic analysis reveals shared pathogene (2025)",
+   "Assessment of a Protease-Free Method for Body Fluid Identification in Sexual Ass (2025)"
+  ]
+ },
+ {
+  "sym": "MAK16",
+  "uniprot": "Q9BXY0",
+  "annot": "3.0",
+  "name": "Protein MAK16 homolog",
+  "epmc": 27,
+  "dm_mean": -2.006,
+  "dm_frac": 1.0,
+  "bioplex": 102,
+  "hpa": "Nucleoli;Vesicles",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "PPAN",
+    0.46
+   ],
+   [
+    "DDX54",
+    0.42
+   ],
+   [
+    "RRP1",
+    0.41
+   ],
+   [
+    "TMA16",
+    0.4
+   ],
+   [
+    "RPF2",
+    0.4
+   ]
+  ],
+  "titles": [
+   "The function of Mak16 in ribosome biogenesis depends on its [4Fe-4S] cluster. (2025)",
+   "Combined bioinformatics and experimental validation identifies m1A-modified gene (2025)"
+  ]
+ },
+ {
+  "sym": "GPATCH1",
+  "uniprot": "Q9BRR8",
+  "annot": "4.0",
+  "name": "G patch domain-containing protein 1",
+  "epmc": 13,
+  "dm_mean": -0.214,
+  "dm_frac": 0.106,
+  "bioplex": 26,
+  "hpa": "Nucleoplasm",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "DHX35",
+    0.44
+   ],
+   [
+    "WDR83",
+    0.36
+   ],
+   [
+    "YJU2B",
+    0.35
+   ],
+   [
+    "PPIE",
+    0.28
+   ],
+   [
+    "CDC40",
+    0.25
+   ]
+  ],
+  "titles": [
+   "Mechanism of spliceosome termination. (2026)",
+   "Development of Polyclonal Antibodies for the Preliminary Characterization of GPA (2025)"
+  ]
+ },
+ {
+  "sym": "PNISR",
+  "uniprot": "Q8TF01",
+  "annot": "5.0",
+  "name": "Arginine/serine-rich protein PNISR",
+  "epmc": 11,
+  "dm_mean": -0.224,
+  "dm_frac": 0.086,
+  "bioplex": 0,
+  "hpa": "Nuclear speckles",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "TTK",
+    0.43
+   ],
+   [
+    "KRT18",
+    0.39
+   ],
+   [
+    "TCEAL9",
+    0.39
+   ],
+   [
+    "RBMX2",
+    0.38
+   ],
+   [
+    "SRP54",
+    0.36
+   ]
+  ],
+  "titles": [
+   "Construction and optimization of a nisin-controlled expression vector using a pr (2025)",
+   "Bulk-RNA and single-nuclei RNA seq analyses reveal the role of lactate metabolis (2024)"
+  ]
+ },
+ {
+  "sym": "TMEM183A",
+  "uniprot": "Q8IXX5",
+  "annot": "3.0",
+  "name": "Transmembrane protein 183A",
+  "epmc": 8,
+  "dm_mean": -0.301,
+  "dm_frac": 0.147,
+  "bioplex": 25,
+  "hpa": "Plasma membrane",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "UBQLN4",
+    0.41
+   ],
+   [
+    "PAQR6",
+    0.35
+   ],
+   [
+    "HAPLN2",
+    0.34
+   ],
+   [
+    "NID1",
+    0.34
+   ],
+   [
+    "RGS2",
+    0.33
+   ]
+  ],
+  "titles": [
+   "Knockdown of tmem183a in Zebrafish Causes Thrombocytopenia and Reduces Coagulati (2026)",
+   "Identification and validation of novel reference genes for bovine respiratory an (2026)"
+  ]
+ },
+ {
+  "sym": "LRRC37B",
+  "uniprot": "Q96QE4",
+  "annot": "3.0",
+  "name": "Leucine-rich repeat-containing protein 37B",
+  "epmc": 5,
+  "dm_mean": -0.324,
+  "dm_frac": 0.199,
+  "bioplex": 3,
+  "hpa": "Cytosol",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "KRT10",
+    0.41
+   ],
+   [
+    "CCL13",
+    0.36
+   ],
+   [
+    "CCL7",
+    0.34
+   ],
+   [
+    "ARHGAP23",
+    0.34
+   ],
+   [
+    "PPY",
+    0.33
+   ]
+  ],
+  "titles": [
+   "LRRC37B is a human modifier of voltage-gated sodium channels and axon excitabili (2023)",
+   "A Human Touch: Hominid-Specific LRRC37B Regulates Axon Initial Segment Excitabil (2024)"
+  ]
+ },
+ {
+  "sym": "C8orf33",
+  "uniprot": "Q9H7E9",
+  "annot": "5.0",
+  "name": "UPF0488 protein C8orf33",
+  "epmc": 8,
+  "dm_mean": -0.157,
+  "dm_frac": 0.099,
+  "bioplex": 54,
+  "hpa": "Nucleoplasm;Plasma membrane",
+  "hpa_rel": "Uncertain",
+  "coess": [
+   [
+    "PGBD2",
+    0.41
+   ],
+   [
+    "IL9R",
+    0.39
+   ],
+   [
+    "MZF1",
+    0.38
+   ],
+   [
+    "PRMT2",
+    0.36
+   ],
+   [
+    "SH3BP5L",
+    0.36
+   ]
+  ],
+  "titles": [
+   "Characterization and regulatory mechanism evaluation of C8orf33 in hepatocellula (2026)",
+   "C8orf33 dictates DNA double-strand break repair choice by modulating KAT8-mediat (2025)"
+  ]
+ },
+ {
+  "sym": "CCDC107",
+  "uniprot": "Q8WV48",
+  "annot": "4.0",
+  "name": "Coiled-coil domain-containing protein 107",
+  "epmc": 4,
+  "dm_mean": -0.239,
+  "dm_frac": 0.09,
+  "bioplex": 56,
+  "hpa": "Cell Junctions;Plasma membrane",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "NOCT",
+    0.39
+   ],
+   [
+    "TMEM254",
+    0.35
+   ],
+   [
+    "DKK1",
+    0.34
+   ],
+   [
+    "TRIM9",
+    0.31
+   ],
+   [
+    "ATP5MK",
+    0.31
+   ]
+  ],
+  "titles": [
+   "Differential expression analysis of <i>CCDC107</i> and <i>RMRP</i> lncRNA as pot (2021)",
+   "Construction and validation of acetylation-related gene signatures for immune la (2025)"
+  ]
+ },
+ {
+  "sym": "TRIM61",
+  "uniprot": "Q5EBN2",
+  "annot": "2.0",
+  "name": "Putative tripartite motif-containing protein 61",
+  "epmc": 10,
+  "dm_mean": -0.181,
+  "dm_frac": 0.083,
+  "bioplex": 1,
+  "hpa": "Endoplasmic reticulum;Nucleoli fibrillar center",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "C17orf58",
+    0.39
+   ],
+   [
+    "PGBD2",
+    0.38
+   ],
+   [
+    "H2AZ1",
+    0.37
+   ],
+   [
+    "ZNF695",
+    0.35
+   ],
+   [
+    "OR2T2",
+    0.34
+   ]
+  ],
+  "titles": [
+   "Genome-wide analysis highlights epigenetic link to age at menarche. (2026)",
+   "Genome-Wide CRISPR Screening Identifies Genetic Modulators of Amyloid Precursor  (2026)"
+  ]
+ },
+ {
+  "sym": "NOP9",
+  "uniprot": "Q86U38",
+  "annot": "4.0",
+  "name": "Nucleolar protein 9",
+  "epmc": 13,
+  "dm_mean": -0.821,
+  "dm_frac": 0.738,
+  "bioplex": 0,
+  "hpa": "Nucleoplasm",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "AK6",
+    0.38
+   ],
+   [
+    "DHX33",
+    0.29
+   ],
+   [
+    "AIRIM",
+    0.28
+   ],
+   [
+    "AFG2B",
+    0.28
+   ],
+   [
+    "SRFBP1",
+    0.26
+   ]
+  ],
+  "titles": [
+   "Nop9 recognizes structured and single-stranded RNA elements of preribosomal RNA. (2020)",
+   "Genetic susceptibility to acute graft versus host disease in pediatric patients  (2021)"
+  ]
+ },
+ {
+  "sym": "FAM133B",
+  "uniprot": "Q5BKY9",
+  "annot": "3.0",
+  "name": "Protein FAM133B",
+  "epmc": 3,
+  "dm_mean": -0.99,
+  "dm_frac": 0.904,
+  "bioplex": 6,
+  "hpa": "Nucleoli",
+  "hpa_rel": "Enhanced",
+  "coess": [
+   [
+    "EEF1B2",
+    0.38
+   ],
+   [
+    "DCAF6",
+    0.33
+   ],
+   [
+    "HMGA1",
+    0.31
+   ],
+   [
+    "DPPA2",
+    0.31
+   ],
+   [
+    "UBQLN4",
+    0.31
+   ]
+  ],
+  "titles": [
+   "Long non-coding RNA FAM133B-2 represses the radio-resistance of nasopharyngeal c (2020)",
+   "Cross-species analysis of the canine and human bladder cancer transcriptome and  (2017)"
+  ]
+ },
+ {
+  "sym": "FAM229A",
+  "uniprot": "H3BQW9",
+  "annot": "2.0",
+  "name": "Protein FAM229A",
+  "epmc": 1,
+  "dm_mean": -0.179,
+  "dm_frac": 0.079,
+  "bioplex": 0,
+  "hpa": "",
+  "hpa_rel": "",
+  "coess": [
+   [
+    "TEKT2",
+    0.38
+   ],
+   [
+    "CPT2",
+    0.37
+   ],
+   [
+    "GPX8",
+    0.36
+   ],
+   [
+    "WDTC1",
+    0.35
+   ],
+   [
+    "DIPK1A",
+    0.33
+   ]
+  ],
+  "titles": [
+   "Genome-Wide CRISPR-Cas9 Screening and Identification of Potential Genes Promotin (2022)"
+  ]
+ },
+ {
+  "sym": "CR1L",
+  "uniprot": "Q2VPA4",
+  "annot": "5.0",
+  "name": "Complement component receptor 1-like protein",
+  "epmc": 17,
+  "dm_mean": -0.16,
+  "dm_frac": 0.064,
+  "bioplex": 6,
+  "hpa": "",
+  "hpa_rel": "",
+  "coess": [
+   [
+    "PGBD2",
+    0.36
+   ],
+   [
+    "OR2T27",
+    0.35
+   ],
+   [
+    "ZNF695",
+    0.32
+   ],
+   [
+    "AGT",
+    0.32
+   ],
+   [
+    "ETV3",
+    0.32
+   ]
+  ],
+  "titles": [
+   "Cancer immunology data engine reveals secreted AOAH as a potential immunotherapy (2025)",
+   "Onion-Mitochondria Inhibit Lipopolysaccharide-Induced Acute Lung Injury by Shapi (2025)"
+  ]
+ },
+ {
+  "sym": "NOL10",
+  "uniprot": "Q9BSC4",
+  "annot": "3.0",
+  "name": "Nucleolar protein 10",
+  "epmc": 20,
+  "dm_mean": -1.293,
+  "dm_frac": 0.982,
+  "bioplex": 60,
+  "hpa": "Nucleoli",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "NOC4L",
+    0.35
+   ],
+   [
+    "AK6",
+    0.34
+   ],
+   [
+    "WDR18",
+    0.34
+   ],
+   [
+    "AIRIM",
+    0.31
+   ],
+   [
+    "DHX33",
+    0.31
+   ]
+  ],
+  "titles": [
+   "Combined SNPs sequencing and allele specific proteomics capture reveal functiona (2025)",
+   "NOL10 variant disrupts ribosome biogenesis and underlies hippocampal sclerosis. (2026)"
+  ]
+ },
+ {
+  "sym": "MXRA7",
+  "uniprot": "P84157",
+  "annot": "3.0",
+  "name": "Matrix-remodeling-associated protein 7",
+  "epmc": 30,
+  "dm_mean": -0.279,
+  "dm_frac": 0.155,
+  "bioplex": 3,
+  "hpa": "Endoplasmic reticulum",
+  "hpa_rel": "Enhanced",
+  "coess": [
+   [
+    "LIMD2",
+    0.34
+   ],
+   [
+    "OSBPL7",
+    0.3
+   ],
+   [
+    "NME2",
+    0.3
+   ],
+   [
+    "AATK",
+    0.29
+   ],
+   [
+    "EEF1B2",
+    0.29
+   ]
+  ],
+  "titles": [
+   "MXRA7 attenuates sperm injury from exercise-induced fatigue via suppression of e (2026)",
+   "The role of &lt;i&gt;MXRA7&lt;/i&gt; in bone marrow senescence involves macropha (2026)"
+  ]
+ },
+ {
+  "sym": "NKAPD1",
+  "uniprot": "Q6ZUT1",
+  "annot": "5.0",
+  "name": "Uncharacterized protein NKAPD1",
+  "epmc": 1,
+  "dm_mean": -0.295,
+  "dm_frac": 0.146,
+  "bioplex": 0,
+  "hpa": "Cytosol",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "UTP14A",
+    0.34
+   ],
+   [
+    "ZNF611",
+    0.33
+   ],
+   [
+    "FKBPL",
+    0.3
+   ],
+   [
+    "PSMB7",
+    0.3
+   ],
+   [
+    "ATXN10",
+    0.29
+   ]
+  ],
+  "titles": [
+   "Systematic Analysis of Tumor Stem Cell-related Gene Characteristics to Predict t (2024)"
+  ]
+ },
+ {
+  "sym": "KRT33A",
+  "uniprot": "O76009",
+  "annot": "4.0",
+  "name": "Keratin, type I cuticular Ha3-I",
+  "epmc": 8,
+  "dm_mean": -0.126,
+  "dm_frac": 0.062,
+  "bioplex": 0,
+  "hpa": "Cytosol;End piece;Principal piece",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "ARL5C",
+    0.34
+   ],
+   [
+    "CACNB1",
+    0.22
+   ],
+   [
+    "CISD3",
+    0.2
+   ],
+   [
+    "IKZF3",
+    0.2
+   ],
+   [
+    "PROSER1",
+    0.2
+   ]
+  ],
+  "titles": [
+   "Nanobubble based sonobiopsy reveals circulating protein signatures of BBB openin (2026)",
+   "Whole-genome sequencing of copy number variation analysis in Ethiopian cattle re (2024)"
+  ]
+ },
+ {
+  "sym": "RPL26L1",
+  "uniprot": "Q9UNX3",
+  "annot": "3.0",
+  "name": "60S ribosomal protein L26-like 1",
+  "epmc": 13,
+  "dm_mean": -0.461,
+  "dm_frac": 0.399,
+  "bioplex": 263,
+  "hpa": "Cytosol;Endoplasmic reticulum",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "UBQLN4",
+    0.34
+   ],
+   [
+    "HMGA1",
+    0.33
+   ],
+   [
+    "TMEM183A",
+    0.32
+   ],
+   [
+    "EEF1B2",
+    0.32
+   ],
+   [
+    "DDX27",
+    0.31
+   ]
+  ],
+  "titles": [
+   "Potential diagnostic markers and therapeutic targets for obstructive sleep apnea (2025)",
+   "Functional analysis across model systems implicates ribosomal proteins in growth (2025)"
+  ]
+ },
+ {
+  "sym": "TBC1D28",
+  "uniprot": "Q2M2D7",
+  "annot": "1.0",
+  "name": "TBC1 domain family member 28",
+  "epmc": 1,
+  "dm_mean": -0.162,
+  "dm_frac": 0.052,
+  "bioplex": 3,
+  "hpa": "Vesicles",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "ZSWIM7",
+    0.34
+   ],
+   [
+    "SLC2A4",
+    0.33
+   ],
+   [
+    "DNAH9",
+    0.32
+   ],
+   [
+    "RCVRN",
+    0.3
+   ],
+   [
+    "TNFSF12",
+    0.3
+   ]
+  ],
+  "titles": [
+   "Longevity vs. Healthy Longevity: Different Outcomes Underlain by Different Mecha (2026)"
+  ]
+ },
+ {
+  "sym": "RPL22L1",
+  "uniprot": "Q6P5R6",
+  "annot": "2.0",
+  "name": "60S ribosomal protein L22-like 1",
+  "epmc": 54,
+  "dm_mean": -0.081,
+  "dm_frac": 0.07,
+  "bioplex": 2,
+  "hpa": "Nucleoli",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "WRN",
+    0.33
+   ],
+   [
+    "ZNF425",
+    0.29
+   ],
+   [
+    "EFCAB11",
+    0.28
+   ],
+   [
+    "DAP",
+    0.27
+   ],
+   [
+    "RAD21L1",
+    0.26
+   ]
+  ],
+  "titles": [
+   "Translational control by RPL22L1-specific ribosomes enhances DNA repair and chem (2026)",
+   "RPL22L1-Myc positive feedback loop drives lung adenocarcinoma progression. (2025)"
+  ]
+ },
+ {
+  "sym": "HLA-C",
+  "uniprot": "Q9TNN7",
+  "annot": "",
+  "name": "HLA class I histocompatibility antigen, Cw-5 alpha chain",
+  "epmc": 3623,
+  "dm_mean": -0.287,
+  "dm_frac": 0.151,
+  "bioplex": 179,
+  "hpa": "",
+  "hpa_rel": "",
+  "coess": [
+   [
+    "HLA-A",
+    0.32
+   ],
+   [
+    "IFITM2",
+    0.29
+   ],
+   [
+    "HLA-F",
+    0.28
+   ],
+   [
+    "HLA-G",
+    0.26
+   ],
+   [
+    "KRTAP10-9",
+    0.25
+   ]
+  ],
+  "titles": [
+   "Detection of Novel HLA-C*07:01:141 Allele. (2026)",
+   "Characterisation of the Novel HLA-C*03:785 Allele Identified by Next Generation  (2026)"
+  ]
+ },
+ {
+  "sym": "SS18L2",
+  "uniprot": "Q9UHA2",
+  "annot": "2.0",
+  "name": "SS18-like protein 2",
+  "epmc": 3,
+  "dm_mean": -2.589,
+  "dm_frac": 0.99,
+  "bioplex": 45,
+  "hpa": "Mitochondria;Nucleoli",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "WDR82",
+    0.32
+   ],
+   [
+    "AIRIM",
+    0.31
+   ],
+   [
+    "NIP7",
+    0.3
+   ],
+   [
+    "AFG2B",
+    0.3
+   ],
+   [
+    "BUB3",
+    0.29
+   ]
+  ],
+  "titles": [
+   "EPIKOL, a chromatin-focused CRISPR/Cas9-based screening platform, to identify ca (2022)",
+   "Common origin of the human synovial sarcoma associated SS18 and SS18L1 gene loci (2006)"
+  ]
+ },
+ {
+  "sym": "RPRD2",
+  "uniprot": "Q5VT52",
+  "annot": "5.0",
+  "name": "Regulation of nuclear pre-mRNA domain-containing protein 2",
+  "epmc": 9,
+  "dm_mean": -0.105,
+  "dm_frac": 0.076,
+  "bioplex": 17,
+  "hpa": "Nucleoplasm;Vesicles",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "TP53",
+    0.32
+   ],
+   [
+    "TP53BP1",
+    0.27
+   ],
+   [
+    "RBM15",
+    0.26
+   ],
+   [
+    "CDKN1A",
+    0.24
+   ],
+   [
+    "SCAF8",
+    0.24
+   ]
+  ],
+  "titles": [
+   "The innate immune factor RPRD2/REAF and its role in the Lv2 restriction of HIV. (2023)",
+   "Effect of Recombinant Human Growth Hormone (rhGH) Use on Genetic Methylation Pat (2025)"
+  ]
+ },
+ {
+  "sym": "TTC27",
+  "uniprot": "Q6P3X3",
+  "annot": "2.0",
+  "name": "Tetratricopeptide repeat protein 27",
+  "epmc": 5,
+  "dm_mean": -1.545,
+  "dm_frac": 0.984,
+  "bioplex": 28,
+  "hpa": "Mitochondria",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "CPSF3",
+    0.32
+   ],
+   [
+    "THG1L",
+    0.3
+   ],
+   [
+    "PCID2",
+    0.29
+   ],
+   [
+    "GGPS1",
+    0.29
+   ],
+   [
+    "GTF3C5",
+    0.29
+   ]
+  ],
+  "titles": [
+   "Emw1/TTC27 is a chaperone required for folding of the eukaryotic elongation fact (2026)",
+   "The C. elegans TPR Containing Protein, TRD-1, Regulates Cell Fate Choice in the  (2014)"
+  ]
+ },
+ {
+  "sym": "SPRYD4",
+  "uniprot": "Q8WW59",
+  "annot": "2.0",
+  "name": "SPRY domain-containing protein 4",
+  "epmc": -1,
+  "dm_mean": -0.263,
+  "dm_frac": 0.132,
+  "bioplex": 13,
+  "hpa": "Nucleoplasm",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "ATP23",
+    0.31
+   ],
+   [
+    "EEF2KMT",
+    0.31
+   ],
+   [
+    "TPH2",
+    0.3
+   ],
+   [
+    "CYP27B1",
+    0.28
+   ],
+   [
+    "H2BC11",
+    0.28
+   ]
+  ],
+  "titles": []
+ },
+ {
+  "sym": "SNRNP25",
+  "uniprot": "Q9BV90",
+  "annot": "5.0",
+  "name": "U11/U12 small nuclear ribonucleoprotein 25 kDa protein",
+  "epmc": 6,
+  "dm_mean": -1.596,
+  "dm_frac": 0.993,
+  "bioplex": 2,
+  "hpa": "Nucleoplasm",
+  "hpa_rel": "Supported",
+  "coess": [
+   [
+    "ARMC7",
+    0.31
+   ],
+   [
+    "ZRSR2",
+    0.28
+   ],
+   [
+    "POP5",
+    0.28
+   ],
+   [
+    "OIP5",
+    0.28
+   ],
+   [
+    "PSMG3",
+    0.26
+   ]
+  ],
+  "titles": [
+   "The fusion gene LRP1-SNRNP25 drives invasion and migration by activating the pJN (2024)",
+   "Snrnp25 is a candidate for the peri-implantation lethal phenotype of the Hba del (2025)"
+  ]
+ },
+ {
+  "sym": "LENG1",
+  "uniprot": "Q96BZ8",
+  "annot": "5.0",
+  "name": "Leukocyte receptor cluster member 1",
+  "epmc": 2,
+  "dm_mean": -0.264,
+  "dm_frac": 0.152,
+  "bioplex": 14,
+  "hpa": "Plasma membrane",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "CWC25",
+    0.31
+   ],
+   [
+    "YJU2B",
+    0.3
+   ],
+   [
+    "DHX35",
+    0.29
+   ],
+   [
+    "WDR83",
+    0.28
+   ],
+   [
+    "MIS12",
+    0.24
+   ]
+  ],
+  "titles": [
+   "Mechanism of spliceosome termination. (2026)",
+   "Proteomic Analysis Reveals Sex-Specific Protein Degradation Targets in the Amygd (2021)"
+  ]
+ },
+ {
+  "sym": "PCNX3",
+  "uniprot": "Q9H6A9",
+  "annot": "4.0",
+  "name": "Pecanex-like protein 3",
+  "epmc": 0,
+  "dm_mean": -0.33,
+  "dm_frac": 0.268,
+  "bioplex": 0,
+  "hpa": "Cytosol",
+  "hpa_rel": "Approved",
+  "coess": [
+   [
+    "SCGB2A1",
+    0.3
+   ],
+   [
+    "CHRM1",
+    0.3
+   ],
+   [
+    "SLC22A9",
+    0.29
+   ],
+   [
+    "LRRC10B",
+    0.28
+   ],
+   [
+    "SLC22A8",
+    0.28
+   ]
+  ],
+  "titles": []
+ },
+ {
+  "sym": "ZC3H18",
+  "uniprot": "Q86VM9",
+  "annot": "5.0",
+  "name": "Zinc finger CCCH domain-containing protein 18",
+  "epmc": 28,
+  "dm_mean": -0.556,
+  "dm_frac": 0.56,
+  "bioplex": 108,
+  "hpa": "Nuclear speckles",
+  "hpa_rel": "Enhanced",
+  "coess": [
+   [
+    "NCBP1",
+    0.3
+   ],
+   [
+    "DHX38",
+    0.28
+   ],
+   [
+    "SMPD3",
+    0.27
+   ],
+   [
+    "CNN2",
+    0.26
+   ],
+   [
+    "SNAPC4",
+    0.25
+   ]
+  ],
+  "titles": [
+   "The early RNA decay factor ZC3H18 directs first intron splicing. (2026)",
+   "The phase separation of ZC3H18 transcriptionally activates LDHA and forms lactyl (2026)"
+  ]
+ }
+]
