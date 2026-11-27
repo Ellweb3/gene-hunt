@@ -196,7 +196,7 @@ fn main() {
     flush!();
 
     let css = r#"
-@page { size: A4; margin: 20mm 18mm; }
+@page { size: Letter; margin: 19mm 18mm; }
 body { font-family: Georgia, 'Times New Roman', serif; font-size: 10.5pt; line-height: 1.5;
        color: #111; max-width: 170mm; margin: 0 auto; }
 h1 { font-size: 17pt; line-height: 1.3; margin: 0 0 4pt; }
