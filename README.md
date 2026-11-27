@@ -43,7 +43,6 @@ ours, not a conclusion of the paper.
 
 📄 **[Full analysis: TMCO6_ZNF511.md](TMCO6_ZNF511.md)** — nine sections, including the
 hypotheses that were refuted.
-✉️ **[Draft letter to a lab](letter_draft.md)** — who to contact and what to propose testing.
 
 ---
 
@@ -78,7 +77,6 @@ hypotheses that were refuted.
 
 ```
 TMCO6_ZNF511.md      main analysis, nine sections
-letter_draft.md      draft letter to a lab
 src/bin/             12 analysis programs in Rust
 data/                computed results (raw downloads are not stored)
 af3/                 AlphaFold Server jobs and results
