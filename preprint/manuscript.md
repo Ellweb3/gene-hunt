@@ -2,7 +2,7 @@
 
 **Eldar Sufiyanov**
 
-Independent researcher, Punta del Este, Uruguay.
+Independent researcher, Maldonado, Uruguay.
 
 Correspondence: fluttereldar@gmail.com  ·  Code and data: https://github.com/Ellweb3/gene-hunt
 
