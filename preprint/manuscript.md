@@ -2,7 +2,9 @@
 
 **Eldar Sufiyanov**
 
-Independent researcher. Correspondence: [email]
+Independent researcher, Punta del Este, Uruguay.
+
+Correspondence: [EMAIL]  ·  Code and data: https://github.com/Ellweb3/gene-hunt
 
 ---
 
@@ -104,6 +106,8 @@ exposed residues of the annotated segments are more hydrophobic than the rest of
 but by −0.3 in AQP1, which is almost entirely membrane-embedded so that any relative exposure
 threshold misfires. The TMCO6 segments give −0.4, indistinguishable from AQP1.
 
+<!--FIG figures/fig1_burial.png **Figure 1. Burial does not distinguish the annotated TMCO6 segments from genuine transmembrane helices.** Each point is one annotated transmembrane helix, placed at its mean number of Calpha atoms within 10 A in that protein's own AlphaFold model. The TMCO6 segments (red) fall inside the range of AQP1, GLUT1, MDR1 and ABCG2, whose transmembrane helices pack against one another and are therefore just as buried.-->
+
 We therefore do not rest the reassignment on either measure. The evidence is the fold
 assignment itself, together with the entry's own structural cross-references, and we report
 the two failed discriminators so that others do not repeat them.
@@ -136,6 +140,8 @@ of the family retain the ancestral tryptophan/asparagine ladder (W in 59-64 of 6
 N in 63 of 65). The minor site is invariant in both groups. A site that had simply decayed
 would not be conserved; this pattern is more consistent with the major site having been
 repurposed for a different ligand in the vertebrate lineage.
+
+<!--FIG figures/fig2_conservation.png **Figure 2. The major NLS-binding site is rebuilt in vertebrates; the minor site is not.** Per-position identity to the human residue across 751 species carrying a PF30746 family member (blue), and across the 65 non-vertebrate members alone (orange). At the five major-site positions the human residue is absent outside vertebrates, where the ancestral importin W/N ladder is retained.-->
 
 ### 2.3 TMCO6 and ZNF511 are reciprocal top co-dependencies
 
@@ -191,6 +197,8 @@ association outside vertebrates (24% of plants with a family member carry the mo
 37% without, p = 0.25), indicating that the motif and the rebuilt site arose once in the
 vertebrate ancestor rather than repeatedly. This is one event, consistent with the two
 proteins having been matched to each other, but it is not independent repeated evidence.
+
+<!--FIG figures/fig3_iptm.png **Figure 3. The TMCO6-ZNF511 interface is reproducible; the predicted mutants are not.** ipTM of the TMCO6-ZNF511 chain pair in the top-ranked AlphaFold 3 model of each job. The pair is unchanged by two substitutions in the rebuilt groove, and survives inside the LSm ring in every configuration tested.-->
 
 ### 2.6 A model of the pair with the LSm2-8 ring, and its limits
 

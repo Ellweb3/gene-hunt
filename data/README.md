@@ -94,3 +94,22 @@ curl -s "https://rest.uniprot.org/uniprotkb/stream?query=family:%22importin%20al
 
 `phylo_set.fa` is assembled from these files plus `tmco6/orth_TMCO6.fa`. Sequence labels
 carry the group tag as a prefix: `TMCO6v`, `PF30746` or `KPNA`.
+
+## Membrane-protein controls (`data/membrane_controls/`)
+
+Used by `src/bin/figures.rs` and `src/bin/lipid_face.rs` to test whether burial or
+exposed-face hydrophobicity distinguish genuine transmembrane helices from buried helices of
+a soluble solenoid. They do not; see section 2.1 of the manuscript.
+
+```bash
+mkdir -p data/membrane_controls
+for acc in P29972 P11166 P08183 Q9UNQ0; do
+  url=$(curl -s -A "Mozilla/5.0" "https://alphafold.ebi.ac.uk/api/prediction/$acc" \
+        | python3 -c "import sys,json;print(json.load(sys.stdin)[0]['pdbUrl'])")
+  curl -s -A "Mozilla/5.0" "$url" -o data/membrane_controls/$acc.pdb
+done
+```
+
+P29972 AQP1 (TRANSMEM with experimental evidence, ECO:0007744), P11166 GLUT1,
+P08183 MDR1/ABCB1, Q9UNQ0 ABCG2. Transmembrane ranges are taken from the corresponding
+UniProt entries and are listed in `figures.rs`.

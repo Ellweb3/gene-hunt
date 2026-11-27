@@ -46,83 +46,85 @@ fn aa1(s: &str) -> char {
     t.iter().position(|x| *x == s).map(|i| o.as_bytes()[i] as char).unwrap_or('X')
 }
 
-/// Figure 1: the two annotated transmembrane segments sit at the burial maximum.
-fn fig1(pdb_path: &str, out: &str) {
-    let txt = fs::read_to_string(pdb_path).unwrap();
-    let mut ca: Vec<[f64; 3]> = Vec::new();
-    let mut pl: Vec<f64> = Vec::new();
-    let mut seq: Vec<char> = Vec::new();
-    for l in txt.lines().filter(|l| l.starts_with("ATOM") && &l[12..16] == " CA ") {
-        let p = |i: usize| l[i..i + 8].trim().parse::<f64>().unwrap();
-        ca.push([p(30), p(38), p(46)]);
-        pl.push(l[60..66].trim().parse().unwrap());
-        seq.push(aa1(&l[17..20]));
-    }
-    let n = ca.len();
-    let nb: Vec<f64> = (0..n).map(|i| (0..n).filter(|&j| j != i && (0..3).map(|k| (ca[i][k] - ca[j][k]).powi(2)).sum::<f64>() < 100.0).count() as f64).collect();
-    // smooth over a 9-residue window for legibility
-    let smooth = |v: &[f64]| -> Vec<f64> {
-        (0..n).map(|i| {
-            let a = i.saturating_sub(4);
-            let b = (i + 5).min(n);
-            v[a..b].iter().sum::<f64>() / (b - a) as f64
+/// Figure 1: burial does not separate the annotated TMCO6 segments from genuine TM helices.
+/// Each point is one annotated transmembrane helix, placed at its mean Calpha neighbour count.
+fn fig1(out: &str) {
+    // (file, label, note, TRANSMEM ranges from the corresponding UniProt entry)
+    let sets: Vec<(&str, &str, &str, Vec<(usize, usize)>)> = vec![
+        ("data/membrane_controls/P29972.pdb", "AQP1", "experimental evidence",
+         vec![(12, 29), (47, 65), (91, 109), (134, 153), (164, 181), (207, 224)]),
+        ("data/membrane_controls/P11166.pdb", "GLUT1", "",
+         vec![(12, 33), (67, 87), (91, 112), (121, 144), (156, 176), (186, 206),
+              (272, 293), (307, 328), (335, 355), (366, 388), (402, 422), (430, 450)]),
+        ("data/membrane_controls/P08183.pdb", "MDR1", "",
+         vec![(45, 67), (117, 137), (187, 208), (216, 236), (293, 316), (331, 352),
+              (712, 732), (757, 777), (833, 853), (855, 874), (935, 957), (974, 995)]),
+        ("data/membrane_controls/Q9UNQ0.pdb", "ABCG2", "",
+         vec![(396, 416), (429, 449), (478, 498), (507, 527), (536, 556), (631, 651)]),
+        ("data/tmco6/AF-TMCO6.pdb", "TMCO6", "the two segments in question",
+         vec![(338, 358), (386, 406)]),
+    ];
+
+    let means = |path: &str, segs: &[(usize, usize)]| -> Vec<f64> {
+        let Ok(txt) = fs::read_to_string(path) else { return vec![] };
+        let ca: Vec<[f64; 3]> = txt.lines().filter(|l| l.starts_with("ATOM") && &l[12..16] == " CA ")
+            .map(|l| {
+                let p = |i: usize| l[i..i + 8].trim().parse::<f64>().unwrap();
+                [p(30), p(38), p(46)]
+            }).collect();
+        let n = ca.len();
+        let nb = |i: usize| (0..n).filter(|&j| j != i && (0..3).map(|k| (ca[i][k] - ca[j][k]).powi(2)).sum::<f64>() < 100.0).count() as f64;
+        segs.iter().filter(|&&(a, b)| b <= n).map(|&(a, b)| {
+            (a - 1..b).map(nb).sum::<f64>() / (b - a + 1) as f64
         }).collect()
     };
-    let nbs = smooth(&nb);
-    let charged: Vec<f64> = (0..n).map(|i| if "KRDE".contains(seq[i]) { 1.0 } else { 0.0 }).collect();
-    let chs = smooth(&charged);
 
-    let (h_top, h_each, gap) = (46.0, 150.0, 54.0);
-    let mut s = Svg::new(h_top + 2.0 * h_each + gap + 70.0);
+    let h_plot = 300.0;
+    let mut s = Svg::new(h_plot + 80.0);
+
+    let y0 = 18.0;
+    let y1 = y0 + h_plot;
+    let (lo, hi) = (10.0, 28.0);
+    let y_of = |v: f64| y1 - h_plot * (v - lo) / (hi - lo);
     let plot_w = W - PAD_L - PAD_R;
-    let x_of = |i: usize| PAD_L + plot_w * (i as f64) / (n as f64 - 1.0);
+    let cw = plot_w / sets.len() as f64;
 
-    s.text(PAD_L, 24.0, "Figure 1. Burial does not distinguish the annotated TMCO6 segments from real transmembrane helices", 15.0, "start", "font-weight='bold'");
-    s.text(PAD_L, 40.0, "AlphaFold model AF-Q96DC7-F1; shaded bands mark UniProt TRANSMEM 338-358 and 386-406 (ECO:0000255)", 11.5, "start", "fill='#555'");
-
-    let bands = [(338usize, 358usize), (386, 406)];
-    let panels: Vec<(&str, &Vec<f64>, f64, &str)> = vec![
-        ("A  Burial: Calpha neighbours within 10 A (9-residue mean)", &nbs, 26.0, "neighbours"),
-        ("B  Fraction of charged residues, K/R/D/E (9-residue mean)", &chs, 0.5, "charged fraction"),
-    ];
-    for (pi, (title, data, ymax, ylab)) in panels.into_iter().enumerate() {
-        let y0 = h_top + pi as f64 * (h_each + gap);
-        let y1 = y0 + h_each;
-        s.text(PAD_L, y0 - 8.0, title, 12.5, "start", "font-weight='bold'");
-        // shaded TM bands
-        for (a, b) in bands {
-            s.rect(x_of(a - 1), y0, x_of(b - 1) - x_of(a - 1), h_each, "#ffd9b3", "");
-        }
-        // axes
-        s.line(PAD_L, y1, W - PAD_R, y1, "#333", 1.0);
-        s.line(PAD_L, y0, PAD_L, y1, "#333", 1.0);
-        let ticks = 5;
-        for t in 0..=ticks {
-            let v = ymax * t as f64 / ticks as f64;
-            let y = y1 - h_each * (v / ymax);
-            s.line(PAD_L - 4.0, y, PAD_L, y, "#333", 1.0);
-            let lbl = if ymax > 10.0 { format!("{v:.0}") } else { format!("{v:.1}") };
-            s.text(PAD_L - 8.0, y + 4.0, &lbl, 10.5, "end", "fill='#333'");
-        }
-        s.text(18.0, (y0 + y1) / 2.0, ylab, 11.0, "middle", &format!("transform='rotate(-90 18 {:.1})' fill='#333'", (y0 + y1) / 2.0));
-        // curve
-        let mut d = String::new();
-        for i in 0..n {
-            let y = y1 - h_each * (data[i] / ymax).min(1.0);
-            d += &format!("{}{:.1},{:.1} ", if i == 0 { "M" } else { "L" }, x_of(i), y);
-        }
-        s.path(&d, "#1a4b8c", 1.6);
-        // x labels
-        for p in [1usize, 100, 200, 300, 400, 493] {
-            let x = x_of(p - 1);
-            s.line(x, y1, x, y1 + 4.0, "#333", 1.0);
-            s.text(x, y1 + 17.0, &p.to_string(), 10.5, "middle", "fill='#333'");
-        }
-        s.text((PAD_L + W - PAD_R) / 2.0, y1 + 34.0, "residue", 11.5, "middle", "fill='#333'");
+    s.line(PAD_L, y0, PAD_L, y1, "#333", 1.0);
+    for t in 0..=6 {
+        let v = lo + (hi - lo) * t as f64 / 6.0;
+        s.line(PAD_L - 4.0, y_of(v), PAD_L, y_of(v), "#333", 1.0);
+        s.text(PAD_L - 8.0, y_of(v) + 4.0, &format!("{v:.0}"), 10.5, "end", "fill='#333'");
+        s.line(PAD_L, y_of(v), W - PAD_R, y_of(v), "#eee", 1.0);
     }
-    let yb = h_top + 2.0 * (h_each + gap) - gap + 42.0;
-    s.text(PAD_L, yb, "Burial is uninformative here: the transmembrane helices of AQP1, GLUT1 and ABCG2 are equally or more", 11.5, "start", "fill='#333'");
-    s.text(PAD_L, yb + 16.0, "buried in their own models. The reassignment of TMCO6 rests on the fold match, not on this measure.", 11.5, "start", "fill='#333'");
+    s.text(20.0, (y0 + y1) / 2.0, "mean Calpha neighbours within 10 A", 11.5, "middle",
+           &format!("transform='rotate(-90 20 {:.1})' fill='#333'", (y0 + y1) / 2.0));
+
+    for (i, (path, label, note, segs)) in sets.iter().enumerate() {
+        let vals = means(path, segs);
+        if vals.is_empty() {
+            continue;
+        }
+        let cx = PAD_L + cw * (i as f64 + 0.5);
+        let is_q = *label == "TMCO6";
+        let fill = if is_q { "#c43b2f" } else { "#1a4b8c" };
+        if is_q {
+            s.rect(PAD_L + cw * i as f64 + 6.0, y0, cw - 12.0, h_plot, "#fdf0ee", "");
+        }
+        // spread points horizontally so they do not overlap
+        for (k, v) in vals.iter().enumerate() {
+            let off = ((k as f64) - (vals.len() as f64 - 1.0) / 2.0) * (cw * 0.52 / vals.len().max(2) as f64);
+            s.body += &format!("<circle cx='{:.1}' cy='{:.1}' r='4.6' fill='{fill}' fill-opacity='0.8'/>\n", cx + off, y_of(*v));
+        }
+        // mean line
+        let m = vals.iter().sum::<f64>() / vals.len() as f64;
+        s.line(cx - cw * 0.2, y_of(m), cx + cw * 0.2, y_of(m), fill, 2.2);
+        s.text(cx, y1 + 20.0, label, 13.0, "middle", &format!("font-weight='bold' fill='{}'", if is_q { "#c43b2f" } else { "#222" }));
+        s.text(cx, y1 + 35.0, &format!("{} helices", vals.len()), 10.5, "middle", "fill='#666'");
+        if !note.is_empty() {
+            s.text(cx, y1 + 49.0, note, 9.8, "middle", &format!("fill='{}'", if is_q { "#c43b2f" } else { "#666" }));
+        }
+    }
+    let yb = y1 + 76.0;
     s.save(out);
 }
 
@@ -158,10 +160,8 @@ fn fig2(results_dir: &str, out: &str) {
         ("3_control_tmco6_znf511_lsm1_7", "with LSm1-7\n(control)"),
     ];
     let h_plot = 210.0;
-    let mut s = Svg::new(h_plot + 150.0);
-    s.text(PAD_L, 24.0, "Figure 2. The TMCO6-ZNF511 interface is reproducible; the predicted mutants are not", 15.0, "start", "font-weight='bold'");
-    s.text(PAD_L, 40.0, "AlphaFold 3, top-ranked model of each job. Bars: ipTM of the TMCO6-ZNF511 chain pair.", 11.5, "start", "fill='#555'");
-    let y0 = 60.0;
+    let mut s = Svg::new(h_plot + 60.0);
+    let y0 = 18.0;
     let y1 = y0 + h_plot;
     let plot_w = W - PAD_L - PAD_R;
     let bw = plot_w / labels.len() as f64;
@@ -190,8 +190,6 @@ fn fig2(results_dir: &str, out: &str) {
         }
     }
     let yb = y1 + 62.0;
-    s.text(PAD_L, yb, "Two point substitutions in the rebuilt TMCO6 groove left the predicted interface unchanged, so they are", 11.5, "start", "fill='#333'");
-    s.text(PAD_L, yb + 16.0, "not a usable experiment. The pair survives unchanged inside the LSm ring in every configuration tested.", 11.5, "start", "fill='#333'");
     s.save(out);
 }
 
@@ -213,10 +211,8 @@ fn fig3(cons_path: &str, out: &str) {
         (362, "minor site"), (366, "minor site"),
     ];
     let h_plot = 200.0;
-    let mut s = Svg::new(h_plot + 170.0);
-    s.text(PAD_L, 24.0, "Figure 3. The major NLS-binding site is rebuilt in vertebrates; the minor site is not", 15.0, "start", "font-weight='bold'");
-    s.text(PAD_L, 40.0, "Per-position identity to human TMCO6 across 751 species with a PF30746 family member.", 11.5, "start", "fill='#555'");
-    let y0 = 60.0;
+    let mut s = Svg::new(h_plot + 95.0);
+    let y0 = 18.0;
     let y1 = y0 + h_plot;
     let plot_w = W - PAD_L - PAD_R;
     let gw = plot_w / sites.len() as f64;
@@ -252,8 +248,6 @@ fn fig3(cons_path: &str, out: &str) {
     s.rect(PAD_L + 160.0, ly, 13.0, 13.0, "#c46a2f", "");
     s.text(PAD_L + 179.0, ly + 11.0, "non-vertebrate family members only (n = 65)", 11.5, "start", "fill='#333'");
     let yb = ly + 40.0;
-    s.text(PAD_L, yb, "At the five major-site positions the human residue is conserved across vertebrates but absent outside them,", 11.5, "start", "fill='#333'");
-    s.text(PAD_L, yb + 16.0, "where the ancestral importin W/N ladder is retained. The minor site W362/N366 is invariant in both groups.", 11.5, "start", "fill='#333'");
     s.save(out);
 }
 
@@ -261,8 +255,8 @@ fn main() {
     let a: Vec<String> = std::env::args().collect();
     let out = a.get(1).map(|s| s.as_str()).unwrap_or("preprint/figures");
     fs::create_dir_all(out).unwrap();
-    fig1("data/tmco6/AF-TMCO6.pdb", &format!("{out}/fig1_burial.svg"));
-    fig2("af3/results", &format!("{out}/fig2_iptm.svg"));
-    fig3("data/tmco6/cons_TMCO6.tsv", &format!("{out}/fig3_conservation.svg"));
+    fig1(&format!("{out}/fig1_burial.svg"));
+    fig2("af3/results", &format!("{out}/fig3_iptm.svg"));
+    fig3("data/tmco6/cons_TMCO6.tsv", &format!("{out}/fig2_conservation.svg"));
     eprintln!("wrote 3 SVG figures to {out}");
 }

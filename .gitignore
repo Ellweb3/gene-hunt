@@ -25,3 +25,8 @@ af3/results/*/*_summary_confidences_[1-4].json
 
 # Private working document, not for publication
 letter_draft.md
+
+# Membrane-protein controls for Figure 1 — re-downloaded, see data/README.md
+data/membrane_controls/
+
+preprint/manuscript.html
