@@ -148,9 +148,17 @@ LSm proteins. **At5g14140**, the ZNF511 homolog, was recovered in 2 of 3 **AtLSM
 purifications alongside SART3/Prp24 (EMB140), Brr2 (EMB1507) and SmG, and was absent from
 the AtLSM1a purifications.
 
-This is the strongest independent evidence in the whole analysis: published experimental
-data, from another kingdom, placing this protein on the nuclear LSm2-8 ring rather than on
-the cytoplasmic LSm1-7 ring.
+We initially treated this as the strongest independent evidence in the whole analysis:
+published experimental data, from another kingdom, placing this protein on the nuclear LSm2-8
+ring rather than on the cytoplasmic LSm1-7 ring.
+
+> ⚠ **Weakened 2026-11-27, on the authority of the original author.** We wrote to Prof. Joanna
+> Kufel, who replied that nothing is known about At5g14140 in *Arabidopsis*, that the
+> interaction "has not been validated", and that its nuclear localisation there is predicted
+> rather than confirmed. The co-purification is therefore an unvalidated AP-MS observation,
+> which is normal for such datasets but is not the firm experimental anchor we treated it as.
+> With this caveat, the assignment to the nuclear ring rests on the DepMap correlations
+> (LSM8 yes, LSM1 no) and on structure prediction — that is, entirely on computation.
 
 ## 6. Phenotypes and literature
 
