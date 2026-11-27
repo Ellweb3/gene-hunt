@@ -1,0 +1,41 @@
+disease	n	mean_pair	frac_lt_-0.5	t_vs_all	(all mean -0.114, n 1208)
+NA	13	-0.229	0.08	-2.52
+Glioblastoma	43	-0.180	0.07	-2.24
+Breast ductal carcinoma	11	-0.272	0.18	-2.05
+Melanoma	39	-0.173	0.05	-1.32
+Ovarian clear cell adenocarcinoma	8	-0.235	0.12	-1.21
+Amelanotic melanoma	11	-0.205	0.09	-1.21
+Invasive breast carcinoma of no special type	10	-0.200	0.10	-1.18
+Astrocytoma	15	-0.164	0.07	-0.95
+Gastric adenocarcinoma	17	-0.183	0.18	-0.94
+Breast carcinoma	15	-0.165	0.07	-0.86
+Renal cell carcinoma	11	-0.169	0.09	-0.85
+Pleural epithelioid mesothelioma	13	-0.177	0.15	-0.83
+Endometrial adenocarcinoma	11	-0.164	0.09	-0.80
+Osteosarcoma	15	-0.154	0.07	-0.72
+Esophageal squamous cell carcinoma	24	-0.156	0.08	-0.70
+Colon carcinoma	8	-0.160	0.12	-0.56
+Pancreatic adenocarcinoma	18	-0.143	0.11	-0.49
+Clear cell renal cell carcinoma	13	-0.145	0.15	-0.45
+Prostate carcinoma	8	-0.177	0.12	-0.43
+Adult hepatocellular carcinoma	17	-0.121	0.06	-0.13
+Lung large cell carcinoma	10	-0.122	0.10	-0.08
+Cutaneous melanoma	10	-0.119	0.20	-0.06
+Adrenal gland neuroblastoma	10	-0.109	0.10	0.05
+Ewing sarcoma	18	-0.110	0.06	0.08
+Tongue squamous cell carcinoma	24	-0.107	0.08	0.16
+Neuroblastoma	29	-0.110	0.00	0.20
+Breast adenocarcinoma	9	-0.105	0.00	0.26
+Bladder carcinoma	30	-0.102	0.07	0.33
+Rectal adenocarcinoma	11	-0.078	0.00	0.73
+Lung small cell carcinoma	24	-0.080	0.04	0.80
+Pancreatic ductal adenocarcinoma	22	-0.067	0.00	1.20
+Lung adenocarcinoma	47	-0.079	0.02	1.21
+Lung squamous cell carcinoma	21	-0.063	0.00	1.40
+Intrahepatic cholangiocarcinoma	19	-0.039	0.00	1.93
+Human papillomavirus-related cervical squamous cell carcinoma	11	-0.019	0.00	1.97
+Colon adenocarcinoma	29	-0.032	0.00	2.52
+Diffuse large B-cell lymphoma germinal center B-cell type	11	-0.005	0.00	3.10
+High grade ovarian serous adenocarcinoma	17	-0.007	0.00	3.65
+Childhood B acute lymphoblastic leukemia	8	0.079	0.00	6.02
+Plasma cell myeloma	17	0.038	0.00	6.62
